@@ -137,7 +137,7 @@
 
   /* TICKER */
   .ticker { background:#000; border-bottom:1px solid var(--border); height:34px; overflow:hidden; display:flex; align-items:center; }
-  .ticker-track { display:flex; animation:ticker-scroll 28s linear infinite; white-space:nowrap; }
+  .ticker-track { display:flex; white-space:nowrap; will-change:transform; transform:translate3d(0,0,0); }
   .ticker-item { font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--text-dim); padding:0 24px; display:inline-flex; align-items:center; gap:7px; border-right:1px solid var(--border2); flex-shrink:0; }
   .ticker-item .sym { color:var(--text); font-weight:700; letter-spacing:2px; }
   .ticker-item .pr { color:var(--green); font-weight:600; }
@@ -866,6 +866,9 @@ let cloudSaveTimer = null;
 let stateUpdatedAt = Number(localStorage.getItem('2030af_state_updated_at') || 0);
 let priceRefreshTimer = null;
 const CHART_START_TS = Date.parse('2026-01-01T00:00:00Z');
+let tickerRafId = null;
+let tickerLastTs = 0;
+let tickerOffsetPx = 0;
 
 function safeParseJSON(raw, fallback) {
   if (!raw) return fallback;
@@ -1484,6 +1487,41 @@ function updateHero(){
 }
 
 // TICKER
+function stopTickerAnimation(){
+  if(tickerRafId!==null){
+    cancelAnimationFrame(tickerRafId);
+    tickerRafId=null;
+  }
+  tickerLastTs=0;
+}
+
+function startTickerAnimation(reset=false){
+  const track=document.getElementById('tickerTrack');
+  if(!track) return;
+  if(reset){
+    tickerOffsetPx=0;
+    track.style.transform='translate3d(0,0,0)';
+  }
+  stopTickerAnimation();
+  const prefersReduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced) return;
+  const pxPerSec=window.innerWidth<=768?22:30;
+
+  const step=(ts)=>{
+    if(!document.body.contains(track)) return;
+    if(!tickerLastTs) tickerLastTs=ts;
+    const dt=Math.min(64,ts-tickerLastTs);
+    tickerLastTs=ts;
+    const loopWidth=Math.max(1,track.scrollWidth/2);
+    tickerOffsetPx+=pxPerSec*(dt/1000);
+    if(tickerOffsetPx>=loopWidth) tickerOffsetPx%=loopWidth;
+    track.style.transform=`translate3d(${-tickerOffsetPx}px,0,0)`;
+    tickerRafId=requestAnimationFrame(step);
+  };
+
+  tickerRafId=requestAnimationFrame(step);
+}
+
 function buildTicker(){
   const items=[
     {sym:'BTC'},{sym:'ETH'},{sym:'SOL'},
@@ -1500,6 +1538,7 @@ function buildTicker(){
     });
   });
   document.getElementById('tickerTrack').innerHTML=html;
+  requestAnimationFrame(()=>startTickerAnimation(true));
 }
 
 function updateTicker(){
@@ -1621,7 +1660,15 @@ function drawChart(){
   const n=Math.min(5,d.length);ctx.fillStyle='rgba(255,255,255,0.22)';ctx.font='10px Space Mono,monospace';ctx.textAlign='center';
   for(let i=0;i<n;i++){const idx=Math.floor(i/(n-1)*(d.length-1)),dt=new Date(d[idx].t);ctx.fillText((dt.getMonth()+1)+'/'+dt.getDate(),tx(idx),p.t+ch+18);}
 }
-window.addEventListener('resize',()=>{resize();drawChart();});
+window.addEventListener('resize',()=>{
+  resize();
+  drawChart();
+  startTickerAnimation(true);
+});
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden) stopTickerAnimation();
+  else startTickerAnimation(false);
+});
 
 // CAPITAL
 function updateCapDisplay() {
