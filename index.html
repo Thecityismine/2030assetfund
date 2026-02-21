@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="2030 Asset Fund">
 <meta name="theme-color" content="#000000">
-<!-- Firebase Analytics (CDN — no bundler needed) -->
+<!-- Firebase Analytics (CDN â€” no bundler needed) -->
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js';
@@ -453,7 +453,7 @@
         <div class="gain-amt" id="gainAmt">+$0</div>
         <div class="gain-badge" id="gainPct">+0%</div>
       </div>
-      <div class="last-upd">Updated: <span id="lastUpd">—</span></div>
+      <div class="last-upd">Updated: <span id="lastUpd">â€”</span></div>
     </div>
   </div>
 
@@ -482,7 +482,7 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
       <div class="stat-card"><div class="stat-lbl">Cash</div><div class="stat-val" id="fbCash">$0</div><div class="stat-sub">Undeployed</div></div>
-      <div class="stat-card"><div class="stat-lbl">Days to 2030</div><div class="stat-val" id="stDays">—</div><div class="stat-sub">Jan 1, 2030</div></div>
+      <div class="stat-card"><div class="stat-lbl">Days to 2030</div><div class="stat-val" id="stDays">â€”</div><div class="stat-sub">Jan 1, 2030</div></div>
     </div>
   </div>
 
@@ -490,50 +490,50 @@
   <div style="margin-bottom:20px;">
     <div class="section-lbl">Risk Metrics</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
-      <div class="stat-card"><div class="stat-lbl">Max Drawdown</div><div class="stat-val" id="rmMaxDD" style="color:var(--red)">—</div><div class="stat-sub">Peak to trough</div></div>
-      <div class="stat-card"><div class="stat-lbl">Current Drawdown</div><div class="stat-val" id="rmCurDD" style="color:var(--red)">—</div><div class="stat-sub">From peak</div></div>
+      <div class="stat-card"><div class="stat-lbl">Max Drawdown</div><div class="stat-val" id="rmMaxDD" style="color:var(--red)">â€”</div><div class="stat-sub">Peak to trough</div></div>
+      <div class="stat-card"><div class="stat-lbl">Current Drawdown</div><div class="stat-val" id="rmCurDD" style="color:var(--red)">â€”</div><div class="stat-sub">From peak</div></div>
       <div class="stat-card"><div class="stat-lbl">Leverage Util.</div><div class="stat-val" id="rmLevUtil">0%</div><div class="stat-sub">of fund deployed</div></div>
-      <div class="stat-card"><div class="stat-lbl">Volatility</div><div class="stat-val" id="rmVol">—</div><div class="stat-sub">30-day est.</div></div>
+      <div class="stat-card"><div class="stat-lbl">Volatility</div><div class="stat-val" id="rmVol">â€”</div><div class="stat-sub">30-day est.</div></div>
     </div>
   </div>
 
   <div class="assets-grid">
     <div class="asset-card btc-card">
       <div class="asset-top">
-        <div class="asset-id"><div class="asset-icon btc-ic">₿</div><div><div class="asset-name">Bitcoin</div><div class="asset-pair">BTC / USD</div></div></div>
-        <div class="asset-chg up" id="btcChg">—</div>
+        <div class="asset-id"><div class="asset-icon btc-ic">â‚¿</div><div><div class="asset-name">Bitcoin</div><div class="asset-pair">BTC / USD</div></div></div>
+        <div class="asset-chg up" id="btcChg">â€”</div>
       </div>
-      <div class="asset-price" id="btcPrice">$—</div>
+      <div class="asset-price" id="btcPrice">$â€”</div>
       <div class="asset-holdings">
         <div><div class="h-lbl">Holdings</div><div class="h-val" id="btcQty">0 BTC</div></div>
         <div><div class="h-lbl">Value</div><div class="h-val" id="btcVal">$0</div></div>
-        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="btcAvg">$—</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="btcAvg">$â€”</div></div>
         <div><div class="h-lbl">P&L</div><div class="h-val pos" id="btcPnl">$0</div></div>
       </div>
     </div>
     <div class="asset-card eth-card">
       <div class="asset-top">
-        <div class="asset-id"><div class="asset-icon eth-ic">Ξ</div><div><div class="asset-name">Ethereum</div><div class="asset-pair">ETH / USD</div></div></div>
-        <div class="asset-chg up" id="ethChg">—</div>
+        <div class="asset-id"><div class="asset-icon eth-ic">Îž</div><div><div class="asset-name">Ethereum</div><div class="asset-pair">ETH / USD</div></div></div>
+        <div class="asset-chg up" id="ethChg">â€”</div>
       </div>
-      <div class="asset-price" id="ethPrice">$—</div>
+      <div class="asset-price" id="ethPrice">$â€”</div>
       <div class="asset-holdings">
         <div><div class="h-lbl">Holdings</div><div class="h-val" id="ethQty">0 ETH</div></div>
         <div><div class="h-lbl">Value</div><div class="h-val" id="ethVal">$0</div></div>
-        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="ethAvg">$—</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="ethAvg">$â€”</div></div>
         <div><div class="h-lbl">P&L</div><div class="h-val pos" id="ethPnl">$0</div></div>
       </div>
     </div>
     <div class="asset-card sol-card">
       <div class="asset-top">
-        <div class="asset-id"><div class="asset-icon sol-ic">◎</div><div><div class="asset-name">Solana</div><div class="asset-pair">SOL / USD</div></div></div>
-        <div class="asset-chg up" id="solChg">—</div>
+        <div class="asset-id"><div class="asset-icon sol-ic">â—Ž</div><div><div class="asset-name">Solana</div><div class="asset-pair">SOL / USD</div></div></div>
+        <div class="asset-chg up" id="solChg">â€”</div>
       </div>
-      <div class="asset-price" id="solPrice">$—</div>
+      <div class="asset-price" id="solPrice">$â€”</div>
       <div class="asset-holdings">
         <div><div class="h-lbl">Holdings</div><div class="h-val" id="solQty">0 SOL</div></div>
         <div><div class="h-lbl">Value</div><div class="h-val" id="solVal">$0</div></div>
-        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="solAvg">$—</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="solAvg">$â€”</div></div>
         <div><div class="h-lbl">P&L</div><div class="h-val pos" id="solPnl">$0</div></div>
       </div>
     </div>
@@ -547,9 +547,9 @@
       <div class="alloc-seg seg-sol" id="allocSol" style="flex:0"></div>
     </div>
     <div class="alloc-legend">
-      <div class="legend-item"><div class="legend-dot" style="background:#f7931a"></div><div><div class="legend-name">Bitcoin</div><div class="legend-pct" id="pctBtc">—%</div></div></div>
-      <div class="legend-item"><div class="legend-dot" style="background:#627eea"></div><div><div class="legend-name">Ethereum</div><div class="legend-pct" id="pctEth">—%</div></div></div>
-      <div class="legend-item"><div class="legend-dot" style="background:#9945ff"></div><div><div class="legend-name">Solana</div><div class="legend-pct" id="pctSol">—%</div></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#f7931a"></div><div><div class="legend-name">Bitcoin</div><div class="legend-pct" id="pctBtc">â€”%</div></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#627eea"></div><div><div class="legend-name">Ethereum</div><div class="legend-pct" id="pctEth">â€”%</div></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9945ff"></div><div><div class="legend-name">Solana</div><div class="legend-pct" id="pctSol">â€”%</div></div></div>
     </div>
   </div>
 </div>
@@ -575,12 +575,12 @@
   <!-- Fund Statement -->
   <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:2px;padding:20px;margin-bottom:16px;">
     <div class="section-lbl" style="margin-bottom:10px;">Fund Statement</div>
-    <p style="font-family:'Barlow',sans-serif;font-weight:500;font-size:14px;color:var(--text-dim);line-height:1.7;margin:0;">This fund is structured to prioritize capital preservation while targeting asymmetric upside during the 2026–2030 Bitcoin market cycle. All positions are actively managed with defined risk parameters and transparent reporting for each LP.</p>
+    <p style="font-family:'Barlow',sans-serif;font-weight:500;font-size:14px;color:var(--text-dim);line-height:1.7;margin:0;">This fund is structured to prioritize capital preservation while targeting asymmetric upside during the 2026â€“2030 Bitcoin market cycle. All positions are actively managed with defined risk parameters and transparent reporting for each LP.</p>
   </div>
 
   <!-- NAV Per LP -->
   <div class="lp-card" style="margin-bottom:16px;border-color:rgba(0,255,136,0.2);">
-    <div class="section-lbl">NAV Per LP — $5,000 Investment</div>
+    <div class="section-lbl">NAV Per LP â€” $5,000 Investment</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:12px;">
       <div style="background:var(--surface3);border-radius:2px;padding:14px;">
         <div class="h-lbl">Capital Deployed</div>
@@ -598,11 +598,11 @@
     </div>
     <div style="background:var(--surface3);border-radius:2px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
       <div class="h-lbl" style="margin:0;">Share of LP Pool (70%)</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;" id="navLPShare">—%</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;" id="navLPShare">â€”%</div>
     </div>
   </div>
 
-  <!-- Capital Raised Card — full width at top -->
+  <!-- Capital Raised Card â€” full width at top -->
   <div class="lp-card" style="margin-bottom:16px;">
     <div class="section-lbl">Capital Raised</div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center;">
@@ -622,7 +622,7 @@
   </div>
   <div class="lp-grid">
     <div class="lp-card">
-      <div class="section-lbl">Return Scenarios — $5,000 Investment</div>
+      <div class="section-lbl">Return Scenarios â€” $5,000 Investment</div>
       <table class="returns-table">
         <thead><tr><th>Case</th><th>Gross</th><th>LP Gets (70%)</th><th>Multiple</th></tr></thead>
         <tbody>
@@ -645,26 +645,10 @@
   <div class="lp-card">
     <div class="section-lbl">Fund Timeline</div>
     <div class="tl-grid">
-      <div class="tl-item"><div class="tl-lbl">Fundraising</div><div class="tl-val">Feb – Sep 2026</div></div>
-      <div class="tl-item"><div class="tl-lbl">Buy Assets</div><div class="tl-val">Oct – Dec 2026</div></div>
-      <div class="tl-item"><div class="tl-lbl">Investment Period</div><div class="tl-val">2027 – 2029</div></div>
+      <div class="tl-item"><div class="tl-lbl">Fundraising</div><div class="tl-val">Feb â€“ Sep 2026</div></div>
+      <div class="tl-item"><div class="tl-lbl">Buy Assets</div><div class="tl-val">Oct â€“ Dec 2026</div></div>
+      <div class="tl-item"><div class="tl-lbl">Investment Period</div><div class="tl-val">2027 â€“ 2029</div></div>
       <div class="tl-item"><div class="tl-lbl">Take Profits</div><div class="tl-val" style="color:var(--green)">2030</div></div>
-    </div>
-  </div>
-
-  <!-- Projected IRR -->
-  <div class="lp-card" style="margin-bottom:0;">
-    <div class="section-lbl">Projected IRR — 4-Year Horizon</div>
-    <table class="returns-table">
-      <thead><tr><th>Case</th><th>Multiple</th><th>LP Gets</th><th>Est. IRR</th></tr></thead>
-      <tbody>
-        <tr><td><span class="s-tag s-base">BASE</span></td><td>6x</td><td style="color:var(--green);font-weight:700">$21,000</td><td style="color:var(--green);font-weight:700">~57% p.a.</td></tr>
-        <tr><td><span class="s-tag s-target">TARGET</span></td><td>7x</td><td style="color:var(--green);font-weight:700">$24,500</td><td style="color:var(--green);font-weight:700">~63% p.a.</td></tr>
-        <tr><td><span class="s-tag s-bull">BULL</span></td><td>8x</td><td style="color:var(--green);font-weight:700">$28,000</td><td style="color:var(--green);font-weight:700">~68% p.a.</td></tr>
-      </tbody>
-    </table>
-    <div style="margin-top:10px;font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;color:var(--text-dim);line-height:1.6;">
-      IRR calculated as annualized return over 4-year term. Past performance not indicative of future results.
     </div>
   </div>
 
@@ -705,14 +689,14 @@
   </div>
 
   <!-- GP Cards -->
-  <div class="section-lbl">General Partners — 30% Split</div>
+  <div class="section-lbl">General Partners â€” 30% Split</div>
   <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
     <!-- Jorge -->
     <div class="lp-card" style="border-color:rgba(0,255,136,0.25);padding:18px;">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <div>
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;" id="gpName">Jorge Medina</div>
-          <div class="h-lbl" style="margin:0;">CIO · 18% of fund profits</div>
+          <div class="h-lbl" style="margin:0;">CIO Â· 18% of fund profits</div>
         </div>
         <button onclick="showGPModal('jorge')" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:1px;padding:6px 12px;cursor:pointer;border-radius:2px;text-transform:uppercase;">EDIT</button>
       </div>
@@ -739,7 +723,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
         <div>
           <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;" id="gp2Name">Martha Lombart</div>
-          <div class="h-lbl" style="margin:0;">CMO · 12% of fund profits</div>
+          <div class="h-lbl" style="margin:0;">CMO Â· 12% of fund profits</div>
         </div>
         <button onclick="showGPModal('martha')" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:1px;padding:6px 12px;cursor:pointer;border-radius:2px;text-transform:uppercase;">EDIT</button>
       </div>
@@ -769,7 +753,7 @@
 
   <!-- Empty state -->
   <div id="noPartnersMsg" style="display:none; text-align:center; padding:48px; color:var(--text-dim); font-family:'Barlow',sans-serif; font-weight:600; font-size:14px; letter-spacing:2px; text-transform:uppercase; border:1px solid var(--border); border-radius:2px;">
-    No LPs added yet — tap + Add Partner
+    No LPs added yet â€” tap + Add Partner
   </div>
 </div>
 
@@ -1117,7 +1101,7 @@ async function doLogout() {
   closeMenu();
 }
 
-// ── FIREBASE AUTH ──────────────────────────────────────────────────────────
+// â”€â”€ FIREBASE AUTH â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const FIREBASE_API_KEY = 'AIzaSyCzHZ5bWs7Wnf9Xv_1EHwVG6JC_YRuDRlc';
 
 function grantAdmin() {
@@ -1202,7 +1186,7 @@ async function fetchWithTimeout(url, opts = {}, timeoutMs = 8000) {
 async function fetchPrices() {
   let ok = false;
 
-  // Primary: CoinGecko — no key needed, works from local files
+  // Primary: CoinGecko â€” no key needed, works from local files
   try {
     const r = await fetchWithTimeout('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
     const d = await r.json();
@@ -1249,7 +1233,7 @@ async function fetchPrices() {
   }
 }
 
-function fmt(n,d=2){if(!n&&n!==0)return'$—';return'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmt(n,d=2){if(!n&&n!==0)return'$â€”';return'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function fmtP(n){return(n>=0?'+':'')+n.toFixed(2)+'%';}
 function fmtSignedMoney(n,d=0){return(n>=0?'+':'')+fmt(n,d);}
 
@@ -1355,7 +1339,7 @@ function updateCards(){
     ce.className='asset-chg '+(safeChange>=0?'up':'dn');
     document.getElementById(id+'Qty').textContent=q.toFixed(6)+' '+s;
     document.getElementById(id+'Val').textContent=fmt(val);
-    document.getElementById(id+'Avg').textContent=avg>0?fmt(avg):'$—';
+    document.getElementById(id+'Avg').textContent=avg>0?fmt(avg):'$â€”';
     const pe=document.getElementById(id+'Pnl');
     pe.textContent=(pnl>=0?'+':'')+fmt(pnl);
     pe.className='h-val '+(pnl>=0?'pos':'neg2');
@@ -1402,10 +1386,10 @@ function updateHero(){
   const fbCash=document.getElementById('fbCash');
   if(fbCash){
     if(totalRaised>0){fbCash.textContent=fmt(cash,0);fbCash.style.color='var(--text)';}
-    else{fbCash.textContent='—';fbCash.style.color='var(--text-dim)';}
+    else{fbCash.textContent='â€”';fbCash.style.color='var(--text-dim)';}
   }
 
-  // Risk Metrics — drawdown from chart history
+  // Risk Metrics â€” drawdown from chart history
   const rmMax=document.getElementById('rmMaxDD');
   const rmCur=document.getElementById('rmCurDD');
   const rmVol=document.getElementById('rmVol');
@@ -1483,7 +1467,7 @@ function updateHero(){
     navAmtEl.textContent=(lpProfit5k>=0?'+':'')+fmt(lpProfit5k,0);
     navAmtEl.style.color=lpProfit5k>=0?'var(--text-dim)':'var(--red)';
   }
-  if(navShareEl) navShareEl.textContent=lpShare>0?(lpShare*100).toFixed(2)+'% of LP pool':'—';
+  if(navShareEl) navShareEl.textContent=lpShare>0?(lpShare*100).toFixed(2)+'% of LP pool':'â€”';
 }
 
 // TICKER
@@ -1861,7 +1845,7 @@ function updatePartnersPage() {
   const jorgeCarry = totalProfit > 0 ? totalProfit * 0.18 : 0;
   const marthaCarry = totalProfit > 0 ? totalProfit * 0.12 : 0;
 
-  // GP LP return — based on their individual investment amounts
+  // GP LP return â€” based on their individual investment amounts
   const totalInvestedWithGP = partners.reduce((s, p) => s + p.amount, 0) + jorgeAmt + marthaAmt;
   const lpPool = lpProfit;
   const jorgeLP = totalInvestedWithGP > 0 ? lpPool * (jorgeAmt / totalInvestedWithGP) : 0;
@@ -1922,7 +1906,7 @@ function updatePartnersPage() {
         <div style="display:flex;align-items:center;gap:12px;">
           <div>
             <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;">${p.name}</div>
-            <div class="h-lbl" style="margin:0;">Limited Partner · $${p.amount.toLocaleString()} invested</div>
+            <div class="h-lbl" style="margin:0;">Limited Partner Â· $${p.amount.toLocaleString()} invested</div>
           </div>
         </div>
         <div style="display:flex;gap:6px;">
@@ -2043,7 +2027,7 @@ function saveGP() {
 <!-- DELETE CONFIRMATION MODAL -->
 <div class="modal-overlay" id="deleteModal">
   <div class="modal" style="max-width:320px;text-align:center;">
-    <div style="font-size:32px;margin-bottom:12px;">⚠️</div>
+    <div style="font-size:32px;margin-bottom:12px;">âš ï¸</div>
     <div class="modal-title" style="font-size:22px;">Remove Partner?</div>
     <div style="font-family:'Barlow',sans-serif;font-weight:600;font-size:15px;color:var(--text-dim);margin-bottom:24px;" id="deleteModalName"></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
@@ -2055,3 +2039,4 @@ function saveGP() {
 
 </body>
 </html>
+
