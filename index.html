@@ -231,6 +231,79 @@
   .btn-cancel { background:transparent; color:var(--text-dim); border:1px solid var(--border); padding:12px 16px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
   .btn-cancel:hover { border-color:var(--text-dim); color:var(--text); }
 
+  /* Typography simplification */
+  .header-logo,
+  .nav-btn,
+  .live-pill,
+  .admin-badge,
+  .menu-nav-btn,
+  .menu-login-btn,
+  .menu-ctrl-btn,
+  .menu-logout-btn,
+  .hero-val,
+  .cap-val,
+  .stat-val,
+  .asset-name,
+  .asset-price,
+  .legend-pct,
+  .page-title,
+  .add-btn,
+  .trade-badge,
+  .asset-sym,
+  .empty-trades,
+  .modal-title,
+  .btn-primary,
+  .btn-cancel {
+    font-family:'Barlow',sans-serif;
+  }
+
+  .header-logo { font-weight:700; letter-spacing:1.4px; }
+  .hero-val { font-weight:700; letter-spacing:0; line-height:.92; }
+  .cap-val,
+  .stat-val,
+  .asset-price,
+  .legend-pct,
+  .page-title,
+  .modal-title,
+  .menu-login-btn,
+  .add-btn,
+  .btn-primary,
+  .trade-badge,
+  .asset-sym {
+    font-weight:700;
+  }
+
+  .nav-btn,
+  .menu-nav-btn,
+  .menu-ctrl-btn,
+  .menu-logout-btn,
+  .menu-section-lbl,
+  .hero-lbl,
+  .cap-lbl,
+  .chart-lbl,
+  .stat-lbl,
+  .section-lbl,
+  .trades-table th,
+  .form-lbl {
+    letter-spacing:1px;
+  }
+
+  .page-title { letter-spacing:.2px; }
+  .nav-btn { font-weight:500; }
+  .menu-nav-btn,
+  .menu-ctrl-btn,
+  .menu-logout-btn { font-weight:600; }
+
+  [style*="font-family:'Barlow Condensed'"] {
+    font-family:'Barlow',sans-serif !important;
+  }
+  [style*="font-weight:900"],
+  [style*="font-weight:800"] {
+    font-weight:700 !important;
+  }
+  [style*="letter-spacing:2px"] { letter-spacing:1px !important; }
+  [style*="letter-spacing:3px"] { letter-spacing:1.4px !important; }
+
   @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
   @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.85); } }
 
