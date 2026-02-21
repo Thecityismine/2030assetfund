@@ -1178,18 +1178,19 @@ function updateHero(){
   // NAV Per LP (standard $5K entry)
   const lpProfit=pnl>0?pnl*0.70:0;
   const totalInvested=partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt;
-  const hasDeployedCapital=tc>0;
-  const baseInvestment=(totalInvested>0 && hasDeployedCapital)?5000:0;
-  const lpShare=(totalInvested>0 && hasDeployedCapital)?(5000/totalInvested):0;
+  const referenceInvestment=totalInvested>0?5000:0;
+  const lpShare=totalInvested>0?(referenceInvestment/totalInvested):0;
+  const deployRatio=totalInvested>0?Math.min(Math.max(tc/totalInvested,0),1):0;
+  const deployedCapital=referenceInvestment*deployRatio;
   const lpProfit5k=lpProfit*lpShare;
-  const nav5k=baseInvestment+lpProfit5k;
-  const navPct=baseInvestment>0?(lpProfit5k/baseInvestment*100):0;
+  const nav5k=referenceInvestment+lpProfit5k;
+  const navPct=referenceInvestment>0?(lpProfit5k/referenceInvestment*100):0;
   const navInvestedEl=document.getElementById('navInvested');
   const navEl=document.getElementById('navPerLP');
   const navPctEl=document.getElementById('navReturnPct');
   const navAmtEl=document.getElementById('navReturnAmt');
   const navShareEl=document.getElementById('navLPShare');
-  if(navInvestedEl) navInvestedEl.textContent=fmt(baseInvestment,0);
+  if(navInvestedEl) navInvestedEl.textContent=fmt(deployedCapital,0);
   if(navEl) navEl.textContent=fmt(nav5k,0);
   if(navPctEl) navPctEl.textContent=(navPct>=0?'+':'')+navPct.toFixed(2)+'%';
   if(navAmtEl) navAmtEl.textContent=(lpProfit5k>=0?'+':'')+fmt(lpProfit5k,0);
