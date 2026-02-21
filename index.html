@@ -1161,14 +1161,15 @@ function buildTicker(){
   const items=[
     {sym:'BTC'},{sym:'ETH'},{sym:'SOL'},
     {lbl:'FUND VALUE',id:'tk-fund'},
-    {lbl:'· 2030 CYCLE ·',dim:true}
+    {lbl:'- 2030 CYCLE -',dim:true}
   ];
   let html='';
-  [0,1].forEach(()=>{
+  [0,1].forEach(copy=>{
+    const suffix=copy===0?'':'2';
     items.forEach(it=>{
       if(it.dim) html+=`<div class="ticker-item" style="color:rgba(255,255,255,0.18)">${it.lbl}</div>`;
-      else if(it.id) html+=`<div class="ticker-item"><span class="sym">${it.lbl}</span><span class="pr" id="${it.id}">—</span></div>`;
-      else html+=`<div class="ticker-item"><span class="sym">${it.sym}</span><span class="pr" id="tk-${it.sym.toLowerCase()}">—</span><span id="tk-${it.sym.toLowerCase()}-c" class="t-up">—</span></div>`;
+      else if(it.id) html+=`<div class="ticker-item"><span class="sym">${it.lbl}</span><span class="pr" id="${it.id}${suffix}">-</span></div>`;
+      else html+=`<div class="ticker-item"><span class="sym">${it.sym}</span><span class="pr" id="tk-${it.sym.toLowerCase()}${suffix}">-</span><span id="tk-${it.sym.toLowerCase()}${suffix}-c" class="t-up">-</span></div>`;
     });
   });
   document.getElementById('tickerTrack').innerHTML=html;
@@ -1179,14 +1180,22 @@ function updateTicker(){
     const id='tk-'+s.toLowerCase();
     [id,id+'2'].forEach(eid=>{
       const pe=document.getElementById(eid),ce=document.getElementById(eid+'-c');
-      if(pe)pe.textContent=fmt(prices[s]);
-      if(ce){ce.textContent=fmtP(changes[s]);ce.className=changes[s]>=0?'t-up':'t-dn';}
+      if(pe) pe.textContent=fmt(prices[s]);
+      if(ce){
+        const chg=Number(changes[s]);
+        if(Number.isFinite(chg)){
+          ce.textContent=fmtP(chg);
+          ce.className=chg>=0?'t-up':'t-dn';
+        } else {
+          ce.textContent='-';
+          ce.className='t-up';
+        }
+      }
     });
   });
   const h=holdings();let tv=0;['BTC','ETH','SOL'].forEach(s=>tv+=h[s].q*prices[s]);
   ['tk-fund','tk-fund2'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fmt(tv,0);});
 }
-
 // CHART
 function saveSnap(){
   const h=holdings();let tv=0;['BTC','ETH','SOL'].forEach(s=>tv+=h[s].q*prices[s]);
