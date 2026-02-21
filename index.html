@@ -13,6 +13,7 @@
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
   import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js';
+  import { getFirestore, doc, getDoc, setDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
   const firebaseConfig = {
     apiKey: "AIzaSyCzHZ5bWs7Wnf9Xv_1EHwVG6JC_YRuDRlc",
     authDomain: "assetfund-86d80.firebaseapp.com",
@@ -23,7 +24,20 @@
     measurementId: "G-XH97M1NL53"
   };
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+  try { getAnalytics(app); } catch (_) {}
+
+  const db = getFirestore(app);
+  const stateDocRef = doc(db, 'appState', 'main');
+  window.afCloud = {
+    enabled: true,
+    async loadState() {
+      const snap = await getDoc(stateDocRef);
+      return snap.exists() ? snap.data() : null;
+    },
+    async saveState(payload) {
+      await setDoc(stateDocRef, payload, { merge: true });
+    }
+  };
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -506,7 +520,7 @@
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
       <div style="background:var(--surface3);border-radius:2px;padding:14px;">
         <div class="h-lbl">Capital Invested</div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;">$5,000</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;" id="navInvested">$0</div>
       </div>
       <div style="background:var(--surface3);border-radius:2px;padding:14px;">
         <div class="h-lbl">Current NAV</div>
@@ -771,13 +785,92 @@ const CMC_KEY = 'e4b0ddbd-fbe2-47aa-902a-f3017f505241';
 let isAdmin = false;
 let prices = {BTC:0,ETH:0,SOL:0};
 let changes = {BTC:0,ETH:0,SOL:0};
-let trades = JSON.parse(localStorage.getItem('2030af_trades')||'[]');
-let capData = JSON.parse(localStorage.getItem('2030af_cap')||'{"raised":0,"investors":0}');
-let chartHistory = JSON.parse(localStorage.getItem('2030af_chart')||'[]');
+const DEFAULT_GP_DATA = { name:'Jorge Medina', amount:0, name2:'Martha Lombart', amount2:0 };
+let trades = safeParseJSON(localStorage.getItem('2030af_trades'), []);
+let capData = safeParseJSON(localStorage.getItem('2030af_cap'), { raised:0, investors:0 });
+let chartHistory = safeParseJSON(localStorage.getItem('2030af_chart'), []);
+let partners = safeParseJSON(localStorage.getItem('2030af_partners'), []);
+let gpData = normalizeGpData(safeParseJSON(localStorage.getItem('2030af_gp'), DEFAULT_GP_DATA));
 let chartRange = '1W';
 let cvs, ctx;
+let cloudSyncReady = false;
+let cloudSaveTimer = null;
 
-window.addEventListener('load', () => {
+function safeParseJSON(raw, fallback) {
+  if (!raw) return fallback;
+  try { return JSON.parse(raw); } catch (_) { return fallback; }
+}
+
+function normalizeGpData(src) {
+  const data = (src && typeof src === 'object') ? src : {};
+  const amount = Number(data.amount);
+  const amount2 = Number(data.amount2);
+  return {
+    name: (data.name || DEFAULT_GP_DATA.name),
+    amount: Number.isFinite(amount) ? amount : DEFAULT_GP_DATA.amount,
+    name2: (data.name2 || DEFAULT_GP_DATA.name2),
+    amount2: Number.isFinite(amount2) ? amount2 : DEFAULT_GP_DATA.amount2
+  };
+}
+
+function gpAmounts() {
+  const jorgeAmt = Number(gpData?.amount ?? 0);
+  const marthaAmt = Number(gpData?.amount2 ?? 0);
+  return {
+    jorgeAmt: Number.isFinite(jorgeAmt) ? jorgeAmt : 0,
+    marthaAmt: Number.isFinite(marthaAmt) ? marthaAmt : 0
+  };
+}
+
+function persistLocalState() {
+  localStorage.setItem('2030af_trades', JSON.stringify(trades));
+  localStorage.setItem('2030af_cap', JSON.stringify(capData));
+  localStorage.setItem('2030af_partners', JSON.stringify(partners));
+  localStorage.setItem('2030af_gp', JSON.stringify(gpData));
+}
+
+async function persistCloudStateNow() {
+  if (!cloudSyncReady || !window.afCloud?.enabled) return;
+  try {
+    await window.afCloud.saveState({
+      trades,
+      capData,
+      partners,
+      gpData,
+      updatedAt: Date.now()
+    });
+  } catch (err) {
+    console.log('Cloud save skipped:', err?.message || err);
+  }
+}
+
+function queueCloudSave() {
+  if (!cloudSyncReady || !window.afCloud?.enabled) return;
+  if (cloudSaveTimer) clearTimeout(cloudSaveTimer);
+  cloudSaveTimer = setTimeout(() => { void persistCloudStateNow(); }, 300);
+}
+
+function persistAppState() {
+  persistLocalState();
+  queueCloudSave();
+}
+
+async function hydrateStateFromCloud() {
+  if (!window.afCloud?.enabled) return;
+  try {
+    const remote = await window.afCloud.loadState();
+    if (!remote || typeof remote !== 'object') return;
+    if (Array.isArray(remote.trades)) trades = remote.trades;
+    if (Array.isArray(remote.partners)) partners = remote.partners;
+    if (remote.capData && typeof remote.capData === 'object') capData = remote.capData;
+    if (remote.gpData && typeof remote.gpData === 'object') gpData = normalizeGpData(remote.gpData);
+    persistLocalState();
+  } catch (err) {
+    console.log('Cloud load skipped:', err?.message || err);
+  }
+}
+
+window.addEventListener('load', async () => {
   // Start in LP view — admin must log in
   document.getElementById('loginSection').style.display = 'flex';
   document.getElementById('adminSection').style.display = 'none';
@@ -787,9 +880,12 @@ window.addEventListener('load', () => {
   document.getElementById('addTradeBtn').style.display = 'none';
   buildTicker();
   initChart();
+  await hydrateStateFromCloud();
+  cloudSyncReady = true;
   renderTrades();
   updateCapDisplay();
   updateDays();
+  updatePartnersPage();
   fetchPrices();
   setInterval(fetchPrices, 60000);
 });
@@ -1015,8 +1111,7 @@ function updateHero(){
   if(fbReal){fbReal.textContent=(realizedGains>=0?'+':'')+fmt(realizedGains);fbReal.className='stat-val '+(realizedGains>=0?'pos':'neg2');}
 
   // Cash = capital raised minus cost basis (undeployed capital)
-  const jorgeAmt=gpData?gpData.amount||5000:5000;
-  const marthaAmt=gpData?gpData.amount2||5000:5000;
+  const { jorgeAmt, marthaAmt } = gpAmounts();
   const totalRaised=partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt;
   const cash=Math.max(0,totalRaised-tc);
   const fbCash=document.getElementById('fbCash');
@@ -1042,19 +1137,23 @@ function updateHero(){
 
   // NAV Per LP (standard $5K entry)
   const lpProfit=pnl>0?pnl*0.70:0;
-  const totalInvested=(partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt)||1;
-  const lpShare=5000/totalInvested;
+  const totalInvested=partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt;
+  const hasDeployedCapital=tc>0;
+  const baseInvestment=(totalInvested>0 && hasDeployedCapital)?5000:0;
+  const lpShare=(totalInvested>0 && hasDeployedCapital)?(5000/totalInvested):0;
   const lpProfit5k=lpProfit*lpShare;
-  const nav5k=5000+lpProfit5k;
-  const navPct=lpProfit5k/5000*100;
+  const nav5k=baseInvestment+lpProfit5k;
+  const navPct=baseInvestment>0?(lpProfit5k/baseInvestment*100):0;
+  const navInvestedEl=document.getElementById('navInvested');
   const navEl=document.getElementById('navPerLP');
   const navPctEl=document.getElementById('navReturnPct');
   const navAmtEl=document.getElementById('navReturnAmt');
   const navShareEl=document.getElementById('navLPShare');
+  if(navInvestedEl) navInvestedEl.textContent=fmt(baseInvestment,0);
   if(navEl) navEl.textContent=fmt(nav5k,0);
   if(navPctEl) navPctEl.textContent=(navPct>=0?'+':'')+navPct.toFixed(2)+'%';
   if(navAmtEl) navAmtEl.textContent=(lpProfit5k>=0?'+':'')+fmt(lpProfit5k,0);
-  if(navShareEl) navShareEl.textContent=(lpShare*100).toFixed(2)+'% of LP pool';
+  if(navShareEl) navShareEl.textContent=lpShare>0?(lpShare*100).toFixed(2)+'% of LP pool':'—';
 }
 
 // TICKER
@@ -1158,11 +1257,10 @@ window.addEventListener('resize',()=>{resize();drawChart();});
 // CAPITAL
 function updateCapDisplay() {
   // Auto-calculate from partners list + GP investments
-  const jorgeAmt = gpData.amount || 5000;
-  const marthaAmt = gpData.amount2 || 5000;
+  const { jorgeAmt, marthaAmt } = gpAmounts();
   const lpTotal = partners.reduce((s, p) => s + p.amount, 0);
   const raised = lpTotal + jorgeAmt + marthaAmt;
-  const investorCount = partners.length + 2; // +2 for both GPs
+  const investorCount = partners.length + (jorgeAmt > 0 ? 1 : 0) + (marthaAmt > 0 ? 1 : 0);
   const pct = Math.min(raised / 100000 * 100, 100);
 
   // LP Summary card
@@ -1184,12 +1282,12 @@ function saveTrade(){
   const date=document.getElementById('tDate').value,qty=+document.getElementById('tQty').value,price=+document.getElementById('tPrice').value;
   if(!date||!qty||!price){showTradeErr('Please fill in date, quantity and price.');return;}
   trades.push({id:Date.now(),date,type:document.getElementById('tType').value,asset:document.getElementById('tAsset').value,qty,price,notes:document.getElementById('tNotes').value});
-  localStorage.setItem('2030af_trades',JSON.stringify(trades));
+  persistAppState();
   hideTradeModal();renderTrades();updateCards();updateHero();
 }
 function deleteTrade(id){
   trades=trades.filter(t=>t.id!==id);
-  localStorage.setItem('2030af_trades',JSON.stringify(trades));
+  persistAppState();
   renderTrades();updateCards();updateHero();
 }
 function renderTrades(){
@@ -1206,8 +1304,6 @@ function renderTrades(){
 }
 function updateDays(){document.getElementById('stDays').textContent=Math.ceil((new Date('2030-01-01')-new Date())/86400000).toLocaleString();}
 // ===== PARTNERS =====
-let partners = JSON.parse(localStorage.getItem('2030af_partners') || '[]');
-let gpData = JSON.parse(localStorage.getItem('2030af_gp') || '{"name":"Jorge Medina","amount":5000,"name2":"Martha Lombart","amount2":5000}');
 
 function updatePartnersPage() {
   const h = holdings();
@@ -1215,7 +1311,8 @@ function updatePartnersPage() {
   ['BTC','ETH','SOL'].forEach(s => { fundVal += h[s].q * prices[s]; costBasis += h[s].c; });
   const totalProfit = fundVal - costBasis;
   const lpProfit = totalProfit > 0 ? totalProfit * 0.70 : 0;
-  const totalInvested = (partners.reduce((sum, p) => sum + p.amount, 0) + 10000) || 1; // +10K for both GPs
+  const { jorgeAmt, marthaAmt } = gpAmounts();
+  const totalInvested = partners.reduce((sum, p) => sum + p.amount, 0) + jorgeAmt + marthaAmt;
 
   // Fund snapshot
   document.getElementById('pFundVal').textContent = fmt(fundVal, 0);
@@ -1229,8 +1326,6 @@ function updatePartnersPage() {
   const marthaCarry = totalProfit > 0 ? totalProfit * 0.12 : 0;
 
   // GP LP return — based on their individual investment amounts
-  const jorgeAmt = gpData.amount || 5000;
-  const marthaAmt = gpData.amount2 || 5000;
   const totalInvestedWithGP = partners.reduce((s, p) => s + p.amount, 0) + jorgeAmt + marthaAmt;
   const lpPool = totalProfit > 0 ? totalProfit * 0.70 : 0;
   const jorgeLP = totalInvestedWithGP > 0 ? lpPool * (jorgeAmt / totalInvestedWithGP) : 0;
@@ -1328,7 +1423,7 @@ function savePartner() {
   } else {
     partners.push({ name, amount });
   }
-  localStorage.setItem('2030af_partners', JSON.stringify(partners));
+  persistAppState();
   hidePartnerModal();
   updatePartnersPage();
   updateCapDisplay();
@@ -1357,7 +1452,7 @@ function hideDeleteModal() {
 function confirmDelete() {
   if (pendingDeleteIndex < 0) return;
   partners.splice(pendingDeleteIndex, 1);
-  localStorage.setItem('2030af_partners', JSON.stringify(partners));
+  persistAppState();
   hideDeleteModal();
   updatePartnersPage();
   updateCapDisplay();
@@ -1367,18 +1462,19 @@ function showGPModal(target) {
   document.getElementById('gpEditTarget').value = target;
   document.getElementById('gpModalTitle').textContent = target === 'jorge' ? 'Edit Jorge' : 'Edit Martha';
   document.getElementById('gpNameInput').value = target === 'jorge' ? gpData.name : gpData.name2;
-  document.getElementById('gpAmountInput').value = target === 'jorge' ? (gpData.amount || 5000) : (gpData.amount2 || 5000);
+  document.getElementById('gpAmountInput').value = target === 'jorge' ? (gpData.amount ?? 0) : (gpData.amount2 ?? 0);
   document.getElementById('gpModal').classList.add('show');
 }
 function hideGPModal() { document.getElementById('gpModal').classList.remove('show'); }
 function saveGP() {
   const val = document.getElementById('gpNameInput').value.trim();
-  const amt = parseFloat(document.getElementById('gpAmountInput').value) || 5000;
+  const parsedAmt = parseFloat(document.getElementById('gpAmountInput').value);
+  const amt = Number.isFinite(parsedAmt) ? parsedAmt : 0;
   if (!val) return;
   const target = document.getElementById('gpEditTarget').value;
   if (target === 'jorge') { gpData.name = val; gpData.amount = amt; }
   else { gpData.name2 = val; gpData.amount2 = amt; }
-  localStorage.setItem('2030af_gp', JSON.stringify(gpData));
+  persistAppState();
   hideGPModal();
   updatePartnersPage();
   updateCapDisplay();
