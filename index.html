@@ -225,6 +225,10 @@
   .btc-s { color:#f7931a; }
   .eth-s { color:#627eea; }
   .sol-s { color:#9945ff; }
+  .trade-action-btn { background:transparent; border:1px solid var(--border); color:var(--text-dim); cursor:pointer; font-family:'Barlow',sans-serif; font-size:11px; letter-spacing:1px; padding:5px 8px; border-radius:2px; text-transform:uppercase; transition:all .2s; }
+  .trade-action-btn:hover { border-color:var(--green); color:var(--green); }
+  .trade-action-btn.del { border-color:rgba(255,51,85,.3); color:var(--red); }
+  .trade-action-btn.del:hover { border-color:var(--red); color:var(--red); background:rgba(255,51,85,.08); }
   .del-btn { background:transparent; border:none; color:var(--text-dim); cursor:pointer; font-size:13px; padding:4px 7px; border-radius:2px; transition:all .2s; }
   .del-btn:hover { color:var(--red); background:rgba(255,51,85,.08); }
   .empty-trades { text-align:center; padding:56px; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-size:15px; letter-spacing:3px; text-transform:uppercase; }
@@ -769,7 +773,7 @@
 <!-- TRADE MODAL -->
 <div class="modal-overlay" id="tradeModal">
   <div class="modal">
-    <div class="modal-title">Add Trade</div>
+    <div class="modal-title" id="tradeModalTitle">Add Trade</div>
     <div class="form-row">
       <div class="form-group"><label class="form-lbl">Date</label><input type="date" class="form-input" id="tDate"></div>
       <div class="form-group"><label class="form-lbl">Type</label><select class="form-select" id="tType"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></div>
@@ -780,8 +784,9 @@
       <div class="form-group"><label class="form-lbl">Price (USD)</label><input type="number" step="any" class="form-input" id="tPrice" placeholder="0.00"></div>
     </div>
     <div class="form-group"><label class="form-lbl">Notes</label><input type="text" class="form-input" id="tNotes" placeholder="Optional..."></div>
+    <input type="hidden" id="tEditId">
     <div class="menu-error" id="tradeErr" style="display:none;margin-top:8px;"></div>
-    <div class="modal-actions"><button class="btn-cancel" onclick="hideTradeModal()">Cancel</button><button class="btn-primary" onclick="saveTrade()">SAVE TRADE</button></div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="hideTradeModal()">Cancel</button><button class="btn-primary" id="tradeSaveBtn" onclick="saveTrade()">SAVE TRADE</button></div>
   </div>
 </div>
 
@@ -1320,20 +1325,89 @@ function updateCapDisplay() {
 // Capital is auto-calculated from partners page
 
 // TRADES
-function showTradeModal(){document.getElementById('tDate').value=new Date().toISOString().split('T')[0];document.getElementById('tradeErr').style.display='none';document.getElementById('tradeModal').classList.add('show');}
-function hideTradeModal(){document.getElementById('tradeModal').classList.remove('show');['tDate','tQty','tPrice','tNotes'].forEach(id=>document.getElementById(id).value='');}
+let pendingTradeDeleteId=null;
+
+function showTradeModal(editId=null){
+  const title=document.getElementById('tradeModalTitle');
+  const saveBtn=document.getElementById('tradeSaveBtn');
+  const editInput=document.getElementById('tEditId');
+  document.getElementById('tradeErr').style.display='none';
+
+  if(editId===null){
+    if(title) title.textContent='Add Trade';
+    if(saveBtn) saveBtn.textContent='SAVE TRADE';
+    if(editInput) editInput.value='';
+    document.getElementById('tDate').value=new Date().toISOString().split('T')[0];
+    document.getElementById('tType').value='BUY';
+    document.getElementById('tAsset').value='BTC';
+    document.getElementById('tQty').value='';
+    document.getElementById('tPrice').value='';
+    document.getElementById('tNotes').value='';
+  } else {
+    const trade=trades.find(t=>String(t.id)===String(editId));
+    if(!trade){showTradeErr('Trade not found.');return;}
+    if(title) title.textContent='Edit Trade';
+    if(saveBtn) saveBtn.textContent='SAVE CHANGES';
+    if(editInput) editInput.value=String(trade.id);
+    document.getElementById('tDate').value=trade.date||new Date().toISOString().split('T')[0];
+    document.getElementById('tType').value=trade.type||'BUY';
+    document.getElementById('tAsset').value=trade.asset||'BTC';
+    document.getElementById('tQty').value=trade.qty;
+    document.getElementById('tPrice').value=trade.price;
+    document.getElementById('tNotes').value=trade.notes||'';
+  }
+
+  document.getElementById('tradeModal').classList.add('show');
+}
+
+function hideTradeModal(){
+  document.getElementById('tradeModal').classList.remove('show');
+  document.getElementById('tEditId').value='';
+  ['tDate','tQty','tPrice','tNotes'].forEach(id=>document.getElementById(id).value='');
+}
+
 function saveTrade(){
   const date=document.getElementById('tDate').value,qty=+document.getElementById('tQty').value,price=+document.getElementById('tPrice').value;
   if(!date||!qty||!price){showTradeErr('Please fill in date, quantity and price.');return;}
-  trades.push({id:Date.now(),date,type:document.getElementById('tType').value,asset:document.getElementById('tAsset').value,qty,price,notes:document.getElementById('tNotes').value});
+
+  const payload={date,type:document.getElementById('tType').value,asset:document.getElementById('tAsset').value,qty,price,notes:document.getElementById('tNotes').value};
+  const editId=document.getElementById('tEditId').value;
+
+  if(editId){
+    const idx=trades.findIndex(t=>String(t.id)===String(editId));
+    if(idx<0){showTradeErr('Trade not found.');return;}
+    trades[idx]={...trades[idx],...payload};
+  } else {
+    trades.push({id:Date.now(),...payload});
+  }
+
   persistAppState();
   hideTradeModal();renderTrades();updateCards();updateHero();
 }
-function deleteTrade(id){
-  trades=trades.filter(t=>t.id!==id);
+
+function editTrade(id){showTradeModal(id);}
+
+function promptDeleteTrade(id){
+  const trade=trades.find(t=>t.id===id);
+  pendingTradeDeleteId=id;
+  const txt=document.getElementById('tradeDeleteText');
+  if(txt) txt.textContent=trade?`${trade.type} ${trade.asset} (${Number(trade.qty).toFixed(6)}) on ${trade.date}`:'This action cannot be undone.';
+  document.getElementById('tradeDeleteModal').classList.add('show');
+}
+
+function hideTradeDeleteModal(){
+  document.getElementById('tradeDeleteModal').classList.remove('show');
+  pendingTradeDeleteId=null;
+}
+
+function confirmDeleteTrade(){
+  if(pendingTradeDeleteId===null)return;
+  trades=trades.filter(t=>t.id!==pendingTradeDeleteId);
   persistAppState();
+  hideTradeDeleteModal();
   renderTrades();updateCards();updateHero();
 }
+
 function renderTrades(){
   const body=document.getElementById('tradesBody');
   if(!trades.length){body.innerHTML=`<tr><td colspan="8"><div class="empty-trades">NO TRADES LOGGED YET</div></td></tr>`;return;}
@@ -1342,8 +1416,8 @@ function renderTrades(){
     const sc={BTC:'btc-s',ETH:'eth-s',SOL:'sol-s'}[t.asset];
     const tc=t.type==='BUY'?'buy-b':'sell-b';
     const total=+t.qty*+t.price;
-    const del=`<button class="del-btn" style="display:${isAdmin?'inline-block':'none'}" onclick="deleteTrade(${t.id})">✕</button>`;
-    return`<tr><td>${t.date}</td><td><span class="asset-sym ${sc}">${t.asset}</span></td><td><span class="trade-badge ${tc}">${t.type}</span></td><td>${(+t.qty).toFixed(6)}</td><td>${fmt(+t.price)}</td><td>${fmt(total)}</td><td style="color:var(--text-dim);font-size:13px">${t.notes||'—'}</td><td>${del}</td></tr>`;
+    const actions=`<div style="display:${isAdmin?'flex':'none'};gap:6px;align-items:center;"><button class="trade-action-btn" onclick="editTrade(${t.id})">EDIT</button><button class="trade-action-btn del" onclick="promptDeleteTrade(${t.id})">DELETE</button></div>`;
+    return`<tr><td>${t.date}</td><td><span class="asset-sym ${sc}">${t.asset}</span></td><td><span class="trade-badge ${tc}">${t.type}</span></td><td>${(+t.qty).toFixed(6)}</td><td>${fmt(+t.price)}</td><td>${fmt(total)}</td><td style="color:var(--text-dim);font-size:13px">${t.notes||'-'}</td><td>${actions}</td></tr>`;
   }).join('');
 }
 function updateDays(){document.getElementById('stDays').textContent=Math.ceil((new Date('2030-01-01')-new Date())/86400000).toLocaleString();}
@@ -1524,6 +1598,18 @@ function saveGP() {
   updateCapDisplay();
 }
 </script>
+<!-- TRADE DELETE CONFIRMATION MODAL -->
+<div class="modal-overlay" id="tradeDeleteModal">
+  <div class="modal" style="max-width:340px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">!</div>
+    <div class="modal-title" style="font-size:22px;">Delete Trade?</div>
+    <div style="font-family:'Barlow',sans-serif;font-weight:600;font-size:15px;color:var(--text-dim);margin-bottom:24px;" id="tradeDeleteText"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button class="btn-cancel" onclick="hideTradeDeleteModal()" style="padding:14px;">CANCEL</button>
+      <button onclick="confirmDeleteTrade()" style="background:var(--red);color:#fff;border:none;padding:14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:2px;cursor:pointer;border-radius:2px;text-transform:uppercase;">DELETE</button>
+    </div>
+  </div>
+</div>
 <!-- DELETE CONFIRMATION MODAL -->
 <div class="modal-overlay" id="deleteModal">
   <div class="modal" style="max-width:320px;text-align:center;">
