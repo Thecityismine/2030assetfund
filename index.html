@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2030 Asset Fund</title>
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAEVklEQVR4nO3cQU4iTRxA8X91w4qFMdErsOYIjJfwNl6DO7h148oryNJwAVm40BhWUF3fqs2MEafhcxBfv1/CqmmqmjxLmoRKEVFCgqi+ewLSVzJooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC2Xw3RM4pJRS1HXd6bmllMg57zxGVVVRVd3WiaZpommanceo6zpSSp2em3OOUsrOY/xUKSL6c7XC68UKnVKKUkqcnZ3FxcVFlFK2rnDtsdfX17i9ve28urVjTCaTGI/H0TTN1pW6PbZYLGI+n7+d23WMX79+xfn5eafruLu7i6enp85jEBT6o67rEhFlOp2Wrh4fH0tVVSUiSkrpr2MMBoMSEWU2m3UeYzab/XHu3x7tfO7v7zuPMZ1O/3gP6I9erNCt9XodOedOq+fz8/NeY6xWq8g5x2azicHg47e3PbZarfYa4+XlJXLOkXPeek/QXsd6vd5rjJ+qV0G3N4Uppa1Bt8e63jy+155bStn6Gu2xrjeP79V1/fba28Zor6PrzSOFX9sJxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQunVbwpLKbHZbDr9SHafTWYOpf0R7mebyLTX0ZetC1q9Cno4HG79JfZ7p6en/3g2+zs5OYnBYNDpWobD4QFmdDx6EXS7Si2Xy7i+vu60QctyuTy61a2dz83NTSwWi0//0/x+Hb+fS9eLoNv94x4eHuLy8nLn848lhnYeV1dXO5+7zx56P1Evgm59th/HR471c/Que4Y0TXM0f5CH0Kugy547ih4bwjX8K35tJxSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWiiD754ATdM0kXOOnHOklD58TnusaZoDz47PoL/YaDSKuq6jruutz2mPjUajQ02rN1JElO+eBEFKKUopMZlMYjweR9M0UVUff6Jrjy0Wi5jP52/n6v8zaKH4keOLVVW1dWV+r2kaP0d/MVdoofi1nVAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EL5D6PrKsZAXIkPAAAAAElFTkSuQmCC">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAEVklEQVR4nO3cQU4iTRxA8X91w4qFMdErsOYIjJfwNl6DO7h148oryNJwAVm40BhWUF3fqs2MEafhcxBfv1/CqmmqmjxLmoRKEVFCgqi+ewLSVzJooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC2Xw3RM4pJRS1HXd6bmllMg57zxGVVVRVd3WiaZpommanceo6zpSSp2em3OOUsrOY/xUKSL6c7XC68UKnVKKUkqcnZ3FxcVFlFK2rnDtsdfX17i9ve28urVjTCaTGI/H0TTN1pW6PbZYLGI+n7+d23WMX79+xfn5eafruLu7i6enp85jEBT6o67rEhFlOp2Wrh4fH0tVVSUiSkrpr2MMBoMSEWU2m3UeYzab/XHu3x7tfO7v7zuPMZ1O/3gP6I9erNCt9XodOedOq+fz8/NeY6xWq8g5x2azicHg47e3PbZarfYa4+XlJXLOkXPeek/QXsd6vd5rjJ+qV0G3N4Uppa1Bt8e63jy+155bStn6Gu2xrjeP79V1/fba28Zor6PrzSOFX9sJxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQunVbwpLKbHZbDr9SHafTWYOpf0R7mebyLTX0ZetC1q9Cno4HG79JfZ7p6en/3g2+zs5OYnBYNDpWobD4QFmdDx6EXS7Si2Xy7i+vu60QctyuTy61a2dz83NTSwWi0//0/x+Hb+fS9eLoNv94x4eHuLy8nLn848lhnYeV1dXO5+7zx56P1Evgm59th/HR471c/Que4Y0TXM0f5CH0Kugy547ih4bwjX8K35tJxSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWiiD754ATdM0kXOOnHOklD58TnusaZoDz47PoL/YaDSKuq6jruutz2mPjUajQ02rN1JElO+eBEFKKUopMZlMYjweR9M0UVUff6Jrjy0Wi5jP52/n6v8zaKH4keOLVVW1dWV+r2kaP0d/MVdoofi1nVAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EIxaKEYtFAMWigGLRSDFopBC8WghWLQQjFooRi0UAxaKAYtFIMWikELxaCFYtBCMWihGLRQDFooBi0UgxaKQQvFoIVi0EL5D6PrKsZAXIkPAAAAAElFTkSuQmCC">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="2030 Asset Fund">
+<!-- Firebase Analytics (CDN — no bundler needed) -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js';
+  const firebaseConfig = {
+    apiKey: "AIzaSyCzHZ5bWs7Wnf9Xv_1EHwVG6JC_YRuDRlc",
+    authDomain: "assetfund-86d80.firebaseapp.com",
+    projectId: "assetfund-86d80",
+    storageBucket: "assetfund-86d80.firebasestorage.app",
+    messagingSenderId: "564628486727",
+    appId: "1:564628486727:web:f2327566d268c2a1640f62",
+    measurementId: "G-XH97M1NL53"
+  };
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #000000;
+    --green: #00ff88;
+    --green-dim: #00cc6a;
+    --green-glow: rgba(0,255,136,0.12);
+    --surface2: #000000;
+    --surface3: #0a0a0a;
+    --border: rgba(0,255,136,0.1);
+    --border2: rgba(255,255,255,0.06);
+    --text: #ffffff;
+    --text-dim: rgba(255,255,255,0.85);
+    --red: #ff3355;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#000000; color:var(--text); font-family:'Barlow',sans-serif; min-height:100vh; overflow-x:hidden; }
+  
+
+  /* HEADER */
+  .header { position:sticky; top:0; z-index:200; background:#000; border-bottom:1px solid var(--border); padding:0 20px; height:54px; display:flex; align-items:center; justify-content:space-between; }
+  .header-logo { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:15px; letter-spacing:3px; color:var(--text); text-transform:uppercase; }
+  .header-center { display:flex; gap:2px; }
+  .nav-btn { background:transparent; border:none; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:13px; letter-spacing:2px; padding:7px 13px; cursor:pointer; border-radius:2px; transition:all .2s; text-transform:uppercase; }
+  .nav-btn:hover,.nav-btn.active { color:var(--green); background:var(--green-glow); }
+  .header-right { display:flex; align-items:center; gap:12px; }
+  .live-pill { display:flex; align-items:center; gap:6px; font-family:'Barlow Condensed',sans-serif; font-size:12px; letter-spacing:2px; color:var(--green); }
+  .live-dot { width:6px; height:6px; background:var(--green); border-radius:50%; animation:pulse 2s infinite; }
+  .admin-badge { font-family:'Barlow Condensed',sans-serif; font-size:11px; letter-spacing:2px; padding:3px 10px; border-radius:2px; background:rgba(0,255,136,0.12); color:var(--green); border:1px solid rgba(0,255,136,0.25); text-transform:uppercase; display:none; }
+  .hamburger { background:transparent; border:1px solid var(--border2); color:var(--text); width:36px; height:36px; border-radius:2px; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; transition:border-color .2s; }
+  .hamburger:hover { border-color:var(--green); }
+  .hamburger span { display:block; width:15px; height:1.5px; background:var(--text); transition:all .3s; }
+  .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity:0; }
+  .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+  /* SIDE MENU */
+  .side-menu { position:fixed; top:54px; right:-310px; width:290px; height:calc(100vh - 54px); background:var(--surface2); border-left:1px solid var(--border); z-index:150; transition:right .35s cubic-bezier(.4,0,.2,1); padding:28px 20px; display:flex; flex-direction:column; gap:20px; overflow-y:auto; }
+  .side-menu.open { right:0; }
+  .menu-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:149; display:none; }
+  .menu-overlay.show { display:block; }
+  .menu-section-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px; }
+  .menu-nav { display:flex; flex-direction:column; gap:3px; }
+  .menu-nav-btn { background:transparent; border:none; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:18px; letter-spacing:2px; padding:11px 12px; cursor:pointer; border-radius:2px; transition:all .2s; text-align:left; text-transform:uppercase; border-left:2px solid transparent; }
+  .menu-nav-btn:hover,.menu-nav-btn.active { color:var(--green); border-left-color:var(--green); background:var(--green-glow); }
+  .menu-divider { height:1px; background:var(--border2); flex-shrink:0; }
+  .admin-login-section { display:flex; flex-direction:column; gap:10px; }
+  .menu-input { background:var(--surface3); border:1px solid var(--border); border-radius:2px; padding:13px 14px; color:var(--text); font-family:'Barlow',sans-serif; font-weight:600; font-size:16px; outline:none; transition:border-color .2s; width:100%; }
+  .menu-input:focus { border-color:var(--green); }
+  .menu-input::placeholder { color:var(--text-dim); }
+  .menu-login-btn { background:var(--green); color:var(--black); border:none; padding:12px; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:14px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
+  .menu-login-btn:hover { background:var(--green-dim); }
+  .menu-ctrl-btn { background:transparent; border:1px solid var(--border); color:var(--text-dim); padding:11px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
+  .menu-ctrl-btn:hover { border-color:var(--green); color:var(--green); }
+  .menu-logout-btn { background:transparent; border:1px solid rgba(255,51,85,.3); color:var(--red); padding:11px; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
+  .menu-error { color:var(--red); font-family:'Space Mono',monospace; font-size:10px; text-align:center; display:none; }
+
+  /* TICKER */
+  .ticker { background:#000; border-bottom:1px solid var(--border); height:34px; overflow:hidden; display:flex; align-items:center; }
+  .ticker-track { display:flex; animation:ticker-scroll 28s linear infinite; white-space:nowrap; }
+  .ticker-item { font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:1px; color:var(--text-dim); padding:0 24px; display:inline-flex; align-items:center; gap:7px; border-right:1px solid var(--border2); flex-shrink:0; }
+  .ticker-item .sym { color:var(--text); font-weight:700; letter-spacing:2px; }
+  .ticker-item .pr { color:var(--green); font-weight:600; }
+  .t-up { color:var(--green); }
+  .t-dn { color:var(--red); }
+  @keyframes ticker-scroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+  /* PAGES */
+  .page { display:none; padding:24px 20px; max-width:1400px; margin:0 auto; }
+  .page.active { display:block; }
+
+  /* HERO */
+  .hero-grid { display:grid; grid-template-columns:1fr; gap:0; margin-bottom:0; align-items:start; }
+  .hero-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:4px; }
+  .hero-val { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:clamp(52px,8vw,90px); letter-spacing:-1px; line-height:.9; margin-bottom:10px; }
+  .hero-gains { display:flex; align-items:center; gap:10px; margin-bottom:4px; }
+  .gain-amt { font-family:'Barlow Condensed',sans-serif; font-size:20px; font-weight:700; color:var(--green); }
+  .gain-badge { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:15px; background:var(--green); color:var(--black); padding:3px 11px; border-radius:2px; }
+  .gain-badge.neg { background:var(--red); }
+  .gain-amt.neg { color:var(--red); }
+  .last-upd { font-family:'Barlow',sans-serif; font-weight:500; font-size:12px; color:var(--text-dim); padding-bottom:16px; }
+
+  /* CAPITAL CARD */
+  .capital-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:20px; }
+  .cap-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:8px; }
+  .cap-val { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:38px; color:var(--text); line-height:1; margin-bottom:2px; }
+  .cap-goal { font-family:'Barlow',sans-serif; font-weight:500; font-size:13px; color:var(--text-dim); margin-bottom:12px; }
+  .progress-bar { height:4px; background:var(--surface3); border-radius:2px; overflow:hidden; margin-bottom:10px; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--green-dim),var(--green)); border-radius:2px; box-shadow:0 0 8px rgba(0,255,136,.5); transition:width 1.2s ease; }
+  .investor-row { display:flex; align-items:center; justify-content:space-between; }
+  .investor-ct { font-family:'Barlow',sans-serif; font-weight:600; font-size:13px; color:var(--text-dim); }
+  .investor-ct strong { color:var(--green); }
+  .edit-cap-btn { background:transparent; border:1px solid var(--border); color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; padding:4px 9px; cursor:pointer; border-radius:2px; transition:all .2s; text-transform:uppercase; display:none; }
+  .edit-cap-btn:hover { border-color:var(--green); color:var(--green); }
+
+  /* CHART */
+  .chart-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:20px; margin-bottom:20px; }
+  .chart-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .chart-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; }
+  .time-tabs { display:flex; gap:3px; }
+  .time-tab { background:transparent; border:none; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:1px; padding:5px 11px; cursor:pointer; border-radius:2px; transition:all .2s; text-transform:uppercase; }
+  .time-tab.active { color:var(--green); background:var(--green-glow); }
+  #fundChart { width:100%; height:200px; display:block; }
+
+  /* STATS */
+  .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+  .stat-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:16px 18px; }
+  .stat-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:11px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:5px; }
+  .stat-val { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:22px; font-variant-numeric:tabular-nums; }
+  .stat-sub { font-family:'Barlow',sans-serif; font-weight:500; font-size:12px; color:var(--text-dim); margin-top:2px; }
+
+  /* ASSETS */
+  .assets-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
+  .asset-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:18px; transition:border-color .25s; position:relative; overflow:hidden; }
+  .asset-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; opacity:0; transition:opacity .3s; }
+  .btc-card::after { background:linear-gradient(90deg,transparent,#f7931a,transparent); }
+  .eth-card::after { background:linear-gradient(90deg,transparent,#627eea,transparent); }
+  .sol-card::after { background:linear-gradient(90deg,transparent,#9945ff,transparent); }
+  .asset-card:hover::after { opacity:1; }
+  .asset-card:hover { border-color:rgba(255,255,255,.1); }
+  .asset-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .asset-id { display:flex; align-items:center; gap:10px; }
+  .asset-icon { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:13px; }
+  .btc-ic { background:rgba(247,147,26,.1); color:#f7931a; border:1px solid rgba(247,147,26,.2); }
+  .eth-ic { background:rgba(98,126,234,.1); color:#627eea; border:1px solid rgba(98,126,234,.2); }
+  .sol-ic { background:rgba(153,69,255,.1); color:#9945ff; border:1px solid rgba(153,69,255,.2); }
+  .asset-name { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:15px; letter-spacing:1px; }
+  .asset-pair { font-family:'Barlow',sans-serif; font-weight:500; font-size:11px; color:var(--text-dim); }
+  .asset-chg { font-family:'Barlow',sans-serif; font-weight:700; font-size:13px; padding:3px 8px; border-radius:2px; }
+  .up { color:var(--green); background:rgba(0,255,136,.08); }
+  .dn { color:var(--red); background:rgba(255,51,85,.08); }
+  .asset-price { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:28px; margin-bottom:14px; font-variant-numeric:tabular-nums; }
+  .asset-holdings { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-top:12px; border-top:1px solid var(--border2); }
+  .h-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:11px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; margin-bottom:2px; }
+  .h-val { font-family:'Barlow',sans-serif; font-weight:700; font-size:15px; font-variant-numeric:tabular-nums; }
+  .pos { color:var(--green); }
+  .neg2 { color:var(--red); }
+
+  /* ALLOC */
+  .alloc-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:20px; margin-bottom:20px; }
+  .section-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; margin-bottom:18px; }
+  .alloc-bar { height:10px; border-radius:2px; display:flex; overflow:hidden; gap:2px; margin-bottom:16px; }
+  .alloc-seg { height:100%; border-radius:2px; transition:flex .6s ease; }
+  .seg-btc { background:#f7931a; }
+  .seg-eth { background:#627eea; }
+  .seg-sol { background:#9945ff; }
+  .alloc-legend { display:flex; gap:24px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:9px; }
+  .legend-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .legend-name { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; color:var(--text-dim); text-transform:uppercase; }
+  .legend-pct { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:17px; }
+
+  /* TRADE LOG */
+  .page-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+  .page-title { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:38px; letter-spacing:-0.5px; text-transform:uppercase; }
+  .add-btn { background:var(--green); color:var(--black); border:none; padding:10px 20px; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
+  .add-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,255,136,.25); }
+  .trades-wrap { background:var(--surface2); border:1px solid var(--border); border-radius:2px; overflow:hidden; overflow-x:auto; }
+  .trades-table { width:100%; border-collapse:collapse; min-width:580px; }
+  .trades-table th { font-family:'Barlow Condensed',sans-serif; font-size:10px; letter-spacing:2px; color:var(--text-dim); text-align:left; padding:13px 16px; border-bottom:1px solid var(--border); text-transform:uppercase; white-space:nowrap; }
+  .trades-table td { padding:13px 16px; font-size:14px; border-bottom:1px solid rgba(255,255,255,.03); font-variant-numeric:tabular-nums; }
+  .trades-table tr:last-child td { border-bottom:none; }
+  .trades-table tr:hover td { background:rgba(0,255,136,.02); }
+  .trade-badge { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:12px; letter-spacing:2px; padding:3px 9px; border-radius:2px; }
+  .buy-b { background:rgba(0,255,136,.1); color:var(--green); }
+  .sell-b { background:rgba(255,51,85,.1); color:var(--red); }
+  .asset-sym { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:14px; }
+  .btc-s { color:#f7931a; }
+  .eth-s { color:#627eea; }
+  .sol-s { color:#9945ff; }
+  .del-btn { background:transparent; border:none; color:var(--text-dim); cursor:pointer; font-size:13px; padding:4px 7px; border-radius:2px; transition:all .2s; }
+  .del-btn:hover { color:var(--red); background:rgba(255,51,85,.08); }
+  .empty-trades { text-align:center; padding:56px; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-size:15px; letter-spacing:3px; text-transform:uppercase; }
+
+  /* LP */
+  .lp-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .lp-card { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:22px; margin-bottom:16px; }
+  .returns-table { width:100%; border-collapse:collapse; }
+  .returns-table th { font-family:'Barlow',sans-serif; font-weight:700; font-size:12px; letter-spacing:1px; color:var(--text-dim); text-align:left; padding:11px 13px; border-bottom:1px solid var(--border); text-transform:uppercase; }
+  .returns-table td { padding:13px 13px; border-bottom:1px solid rgba(255,255,255,.03); font-family:'Barlow',sans-serif; font-weight:600; font-size:16px; font-variant-numeric:tabular-nums; }
+  .returns-table tr:last-child td { border-bottom:none; }
+  .s-tag { font-family:'Barlow',sans-serif; font-weight:800; font-size:12px; letter-spacing:1px; padding:4px 10px; border-radius:2px; }
+  .s-base { background:rgba(0,255,136,.08); color:var(--green); }
+  .s-target { background:rgba(0,255,136,.18); color:var(--green); }
+  .s-bull { background:var(--green); color:var(--black); }
+  .tl-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .tl-item { background:var(--surface3); border:1px solid var(--border2); border-radius:2px; padding:14px; text-align:center; }
+  .tl-lbl { font-family:'Barlow',sans-serif; font-weight:600; font-size:12px; letter-spacing:1px; color:var(--text-dim); text-transform:uppercase; margin-bottom:5px; }
+  .tl-val { font-family:'Barlow',sans-serif; font-weight:800; font-size:15px; }
+
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.88); backdrop-filter:blur(10px); z-index:500; display:none; align-items:center; justify-content:center; }
+  .modal-overlay.show { display:flex; }
+  .modal { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:32px; width:450px; max-width:95vw; animation:fadeUp .3s ease; }
+  .modal-title { font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:32px; letter-spacing:1px; text-transform:uppercase; margin-bottom:24px; }
+  .form-group { margin-bottom:14px; }
+  .form-lbl { font-family:'Barlow',sans-serif; font-weight:700; font-size:12px; letter-spacing:2px; color:var(--text-dim); text-transform:uppercase; display:block; margin-bottom:8px; }
+  .form-input,.form-select { width:100%; background:var(--surface3); border:1px solid var(--border); border-radius:2px; padding:13px 14px; color:var(--text); font-family:'Barlow',sans-serif; font-weight:600; font-size:16px; outline:none; transition:border-color .2s; }
+  .form-input:focus,.form-select:focus { border-color:var(--green); }
+  .form-select option { background:#161616; }
+  .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .modal-actions { display:flex; gap:10px; margin-top:22px; }
+  .btn-primary { flex:1; background:var(--green); color:var(--black); border:none; padding:12px; font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:14px; letter-spacing:3px; text-transform:uppercase; cursor:pointer; border-radius:2px; }
+  .btn-cancel { background:transparent; color:var(--text-dim); border:1px solid var(--border); padding:12px 16px; font-family:'Barlow Condensed',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; border-radius:2px; transition:all .2s; }
+  .btn-cancel:hover { border-color:var(--text-dim); color:var(--text); }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.85); } }
+
+  @media (max-width:768px) {
+    .header-center { display:none; }
+    .hero-grid { grid-template-columns:1fr; }
+    .assets-grid { grid-template-columns:1fr; }
+    .stats-row { grid-template-columns:1fr 1fr; }
+    .lp-grid { grid-template-columns:1fr; }
+    .tl-grid { grid-template-columns:1fr 1fr; }
+    .page { padding:14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">2030 ASSET FUND</div>
+  <div class="header-center">
+    <button class="nav-btn active" onclick="showPage('overview',this)">Overview</button>
+    <button class="nav-btn" id="tradesNavBtn" style="display:none" onclick="showPage('trades',this)">Trade Log</button>
+    <button class="nav-btn" onclick="showPage('lp',this)">LP Summary</button>
+    <button class="nav-btn" id="partnersNavBtn" style="display:none" onclick="showPage('partners',this)">Partners</button>
+  </div>
+  <div class="header-right">
+    <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+    <div class="admin-badge" id="adminBadge">ADMIN</div>
+    <button class="hamburger" id="hamBtn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+  </div>
+</div>
+
+<!-- OVERLAY + SIDE MENU -->
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<div class="side-menu" id="sideMenu">
+  <div>
+    <div class="menu-section-lbl">Navigate</div>
+    <div class="menu-nav">
+      <button class="menu-nav-btn active" onclick="showPage('overview',null);closeMenu()">Overview</button>
+      <button class="menu-nav-btn" onclick="showPage('lp',null);closeMenu()">LP Summary</button>
+      <button class="menu-nav-btn" id="partnersMenuBtn" style="display:none" onclick="showPage('partners',null);closeMenu()">Partners</button>
+      <button class="menu-nav-btn" id="tradesMenuBtn" style="display:none" onclick="showPage('trades',null);closeMenu()">Trade Log</button>
+    </div>
+  </div>
+  <div class="menu-divider"></div>
+  <div id="loginSection" class="admin-login-section">
+    <div class="menu-section-lbl">Admin Access</div>
+    <input type="email" class="menu-input" id="menuEmail" placeholder="Email address" onkeydown="if(event.key==='Enter')doLogin()">
+    <input type="password" class="menu-input" id="menuPw" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="menu-login-btn" id="loginBtn" onclick="doLogin()">SIGN IN</button>
+    <div class="menu-error" id="menuErr"></div>
+  </div>
+  <div id="adminSection" style="display:none; flex-direction:column; gap:10px;">
+    <div class="menu-section-lbl">Admin Controls</div>
+    <button class="menu-logout-btn" onclick="doLogout()">LOGOUT ADMIN</button>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<!-- OVERVIEW PAGE -->
+<div class="page active" id="page-overview">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-lbl">Total Fund Value</div>
+      <div class="hero-val" id="heroVal">$0</div>
+      <div class="hero-gains">
+        <div class="gain-amt" id="gainAmt">+$0</div>
+        <div class="gain-badge" id="gainPct">+0%</div>
+      </div>
+      <div class="last-upd">Updated: <span id="lastUpd">—</span></div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-top">
+      <div class="chart-lbl">Fund Growth</div>
+      <div class="time-tabs">
+        <button class="time-tab active" onclick="setRange('1W',this)">1W</button>
+        <button class="time-tab" onclick="setRange('1M',this)">1M</button>
+        <button class="time-tab" onclick="setRange('3M',this)">3M</button>
+        <button class="time-tab" onclick="setRange('ALL',this)">ALL</button>
+      </div>
+    </div>
+    <canvas id="fundChart"></canvas>
+  </div>
+
+
+  <!-- FUND BREAKDOWN -->
+  <div style="margin-bottom:20px;">
+    <div class="section-lbl">Fund Breakdown</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:10px;">
+      <div class="stat-card"><div class="stat-lbl">Spot Holdings</div><div class="stat-val" id="fbSpot">$0</div><div class="stat-sub">Mark to market</div></div>
+      <div class="stat-card"><div class="stat-lbl">Cost Basis</div><div class="stat-val" id="stCost">$0</div><div class="stat-sub">Total invested</div></div>
+      <div class="stat-card"><div class="stat-lbl">Unrealized P&L</div><div class="stat-val pos" id="stPnl">$0</div><div class="stat-sub">Open positions</div></div>
+      <div class="stat-card"><div class="stat-lbl">Realized Gains</div><div class="stat-val pos" id="fbRealized">$0</div><div class="stat-sub">Closed trades</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="stat-card"><div class="stat-lbl">Cash</div><div class="stat-val" id="fbCash">$0</div><div class="stat-sub">Undeployed</div></div>
+      <div class="stat-card"><div class="stat-lbl">Target Return</div><div class="stat-val" style="color:var(--green)">10X</div><div class="stat-sub">2030 target</div></div>
+      <div class="stat-card"><div class="stat-lbl">Days to 2030</div><div class="stat-val" id="stDays">—</div><div class="stat-sub">Jan 1, 2030</div></div>
+    </div>
+  </div>
+
+  <!-- RISK METRICS -->
+  <div style="margin-bottom:20px;">
+    <div class="section-lbl">Risk Metrics</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+      <div class="stat-card"><div class="stat-lbl">Max Drawdown</div><div class="stat-val" id="rmMaxDD" style="color:var(--red)">—</div><div class="stat-sub">Peak to trough</div></div>
+      <div class="stat-card"><div class="stat-lbl">Current Drawdown</div><div class="stat-val" id="rmCurDD" style="color:var(--red)">—</div><div class="stat-sub">From peak</div></div>
+      <div class="stat-card"><div class="stat-lbl">Leverage Util.</div><div class="stat-val" id="rmLevUtil">0%</div><div class="stat-sub">of fund deployed</div></div>
+      <div class="stat-card"><div class="stat-lbl">Volatility</div><div class="stat-val" id="rmVol">—</div><div class="stat-sub">30-day est.</div></div>
+    </div>
+  </div>
+
+  <div class="assets-grid">
+    <div class="asset-card btc-card">
+      <div class="asset-top">
+        <div class="asset-id"><div class="asset-icon btc-ic">₿</div><div><div class="asset-name">Bitcoin</div><div class="asset-pair">BTC / USD</div></div></div>
+        <div class="asset-chg up" id="btcChg">—</div>
+      </div>
+      <div class="asset-price" id="btcPrice">$—</div>
+      <div class="asset-holdings">
+        <div><div class="h-lbl">Holdings</div><div class="h-val" id="btcQty">0 BTC</div></div>
+        <div><div class="h-lbl">Value</div><div class="h-val" id="btcVal">$0</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="btcAvg">$—</div></div>
+        <div><div class="h-lbl">P&L</div><div class="h-val pos" id="btcPnl">$0</div></div>
+      </div>
+    </div>
+    <div class="asset-card eth-card">
+      <div class="asset-top">
+        <div class="asset-id"><div class="asset-icon eth-ic">Ξ</div><div><div class="asset-name">Ethereum</div><div class="asset-pair">ETH / USD</div></div></div>
+        <div class="asset-chg up" id="ethChg">—</div>
+      </div>
+      <div class="asset-price" id="ethPrice">$—</div>
+      <div class="asset-holdings">
+        <div><div class="h-lbl">Holdings</div><div class="h-val" id="ethQty">0 ETH</div></div>
+        <div><div class="h-lbl">Value</div><div class="h-val" id="ethVal">$0</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="ethAvg">$—</div></div>
+        <div><div class="h-lbl">P&L</div><div class="h-val pos" id="ethPnl">$0</div></div>
+      </div>
+    </div>
+    <div class="asset-card sol-card">
+      <div class="asset-top">
+        <div class="asset-id"><div class="asset-icon sol-ic">◎</div><div><div class="asset-name">Solana</div><div class="asset-pair">SOL / USD</div></div></div>
+        <div class="asset-chg up" id="solChg">—</div>
+      </div>
+      <div class="asset-price" id="solPrice">$—</div>
+      <div class="asset-holdings">
+        <div><div class="h-lbl">Holdings</div><div class="h-val" id="solQty">0 SOL</div></div>
+        <div><div class="h-lbl">Value</div><div class="h-val" id="solVal">$0</div></div>
+        <div><div class="h-lbl">Avg Buy</div><div class="h-val" id="solAvg">$—</div></div>
+        <div><div class="h-lbl">P&L</div><div class="h-val pos" id="solPnl">$0</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alloc-card">
+    <div class="section-lbl">Portfolio Allocation</div>
+    <div class="alloc-bar">
+      <div class="alloc-seg seg-btc" id="allocBtc" style="flex:1"></div>
+      <div class="alloc-seg seg-eth" id="allocEth" style="flex:0"></div>
+      <div class="alloc-seg seg-sol" id="allocSol" style="flex:0"></div>
+    </div>
+    <div class="alloc-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#f7931a"></div><div><div class="legend-name">Bitcoin</div><div class="legend-pct" id="pctBtc">—%</div></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#627eea"></div><div><div class="legend-name">Ethereum</div><div class="legend-pct" id="pctEth">—%</div></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#9945ff"></div><div><div class="legend-name">Solana</div><div class="legend-pct" id="pctSol">—%</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRADE LOG -->
+<div class="page" id="page-trades">
+  <div class="page-header">
+    <div class="page-title">Trade Log</div>
+    <button class="add-btn" id="addTradeBtn" style="display:none" onclick="showTradeModal()">+ Add Trade</button>
+  </div>
+  <div class="trades-wrap">
+    <table class="trades-table">
+      <thead><tr><th>Date</th><th>Asset</th><th>Type</th><th>Quantity</th><th>Price</th><th>Total</th><th>Notes</th><th></th></tr></thead>
+      <tbody id="tradesBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- LP SUMMARY -->
+<div class="page" id="page-lp">
+  <div class="page-header"><div class="page-title">LP Summary</div></div>
+
+  <!-- Fund Statement -->
+  <div style="background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:2px;padding:20px;margin-bottom:16px;">
+    <div class="section-lbl" style="margin-bottom:10px;">Fund Statement</div>
+    <p style="font-family:'Barlow',sans-serif;font-weight:500;font-size:14px;color:var(--text-dim);line-height:1.7;margin:0;">This fund is structured to prioritize capital preservation while targeting asymmetric upside during the 2026–2030 Bitcoin market cycle. All positions are actively managed with defined risk parameters and transparent reporting for each LP.</p>
+  </div>
+
+  <!-- NAV Per LP -->
+  <div class="lp-card" style="margin-bottom:16px;border-color:rgba(0,255,136,0.2);">
+    <div class="section-lbl">NAV Per LP — $5,000 Investment</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;">
+      <div style="background:var(--surface3);border-radius:2px;padding:14px;">
+        <div class="h-lbl">Capital Invested</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;">$5,000</div>
+      </div>
+      <div style="background:var(--surface3);border-radius:2px;padding:14px;">
+        <div class="h-lbl">Current NAV</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="navPerLP">$5,000</div>
+      </div>
+      <div style="background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);border-radius:2px;padding:14px;">
+        <div class="h-lbl">Net Return</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="navReturnPct">+0%</div>
+        <div style="font-family:'Barlow',sans-serif;font-weight:600;font-size:12px;color:var(--text-dim);margin-top:4px;" id="navReturnAmt">+$0</div>
+      </div>
+    </div>
+    <div style="background:var(--surface3);border-radius:2px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
+      <div class="h-lbl" style="margin:0;">Share of LP Pool (70%)</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;" id="navLPShare">—%</div>
+    </div>
+  </div>
+
+  <!-- Capital Raised Card — full width at top -->
+  <div class="lp-card" style="margin-bottom:16px;">
+    <div class="section-lbl">Capital Raised</div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:center;">
+      <div>
+        <div class="cap-val" id="capVal" style="font-size:42px;">$0</div>
+        <div class="cap-goal">of $100,000 goal</div>
+        <div class="investor-ct" style="margin-top:8px;"><strong id="investCt">0</strong> / 20 investors</div>
+      </div>
+      <div>
+        <div class="progress-bar" style="height:8px; margin-bottom:10px;"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div class="cap-goal" id="capPct">0% funded</div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="lp-grid">
+    <div class="lp-card">
+      <div class="section-lbl">Return Scenarios — $5,000 Investment</div>
+      <table class="returns-table">
+        <thead><tr><th>Case</th><th>Gross</th><th>LP Gets (70%)</th><th>Multiple</th></tr></thead>
+        <tbody>
+          <tr><td><span class="s-tag s-base">BASE</span></td><td>6x</td><td style="color:var(--green);font-weight:700">$21,000</td><td>4.2x</td></tr>
+          <tr><td><span class="s-tag s-target">TARGET</span></td><td>7x</td><td style="color:var(--green);font-weight:700">$24,500</td><td>4.9x</td></tr>
+          <tr><td><span class="s-tag s-bull">BULL</span></td><td>8x</td><td style="color:var(--green);font-weight:700">$28,000</td><td>5.6x</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="lp-card">
+      <div class="section-lbl">Fund Structure</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div><div class="h-lbl">Investment Amount</div><div class="h-val" style="font-size:17px; font-family:'Barlow',sans-serif; font-weight:700;">$5,000 per LP</div></div>
+        <div><div class="h-lbl">Term</div><div class="h-val" style="font-size:17px; font-family:'Barlow',sans-serif; font-weight:700;">4 Years</div></div>
+        <div><div class="h-lbl">GP / LP Split</div><div class="h-val" style="font-size:17px">30% / <span style="color:var(--green)">70%</span></div></div>
+        <div><div class="h-lbl">Target Investors</div><div class="h-val" style="font-size:17px; font-family:'Barlow',sans-serif; font-weight:700;">20 Partners</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="lp-card">
+    <div class="section-lbl">Fund Timeline</div>
+    <div class="tl-grid">
+      <div class="tl-item"><div class="tl-lbl">Fundraising</div><div class="tl-val">Feb – Sep 2026</div></div>
+      <div class="tl-item"><div class="tl-lbl">Buy Assets</div><div class="tl-val">Oct – Dec 2026</div></div>
+      <div class="tl-item"><div class="tl-lbl">Investment Period</div><div class="tl-val">2027 – 2029</div></div>
+      <div class="tl-item"><div class="tl-lbl">Take Profits</div><div class="tl-val" style="color:var(--green)">2030</div></div>
+    </div>
+  </div>
+
+  <!-- Projected IRR -->
+  <div class="lp-card" style="margin-bottom:0;">
+    <div class="section-lbl">Projected IRR — 4-Year Horizon</div>
+    <table class="returns-table">
+      <thead><tr><th>Case</th><th>Multiple</th><th>LP Gets</th><th>Est. IRR</th></tr></thead>
+      <tbody>
+        <tr><td><span class="s-tag s-base">BASE</span></td><td>6x</td><td style="color:var(--green);font-weight:700">$21,000</td><td style="color:var(--green);font-weight:700">~57% p.a.</td></tr>
+        <tr><td><span class="s-tag s-target">TARGET</span></td><td>7x</td><td style="color:var(--green);font-weight:700">$24,500</td><td style="color:var(--green);font-weight:700">~63% p.a.</td></tr>
+        <tr><td><span class="s-tag s-bull">BULL</span></td><td>8x</td><td style="color:var(--green);font-weight:700">$28,000</td><td style="color:var(--green);font-weight:700">~68% p.a.</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px;font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;color:var(--text-dim);line-height:1.6;">
+      IRR calculated as annualized return over 4-year term. Past performance not indicative of future results.
+    </div>
+  </div>
+
+  <!-- Distribution Waterfall -->
+  <div class="lp-card">
+    <div class="section-lbl">Distribution Waterfall</div>
+    <div style="display:flex;flex-direction:column;gap:0;">
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:28px;height:28px;border-radius:50%;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--green);flex-shrink:0;">1</div>
+        <div><div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;">Return of Capital</div><div style="font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;color:var(--text-dim);">All LPs receive 100% of invested capital first</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="width:28px;height:28px;border-radius:50%;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--green);flex-shrink:0;">2</div>
+        <div><div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;">70% to Limited Partners</div><div style="font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;color:var(--text-dim);">Distributed pro-rata based on investment size</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:14px 0;">
+        <div style="width:28px;height:28px;border-radius:50%;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:var(--green);flex-shrink:0;">3</div>
+        <div><div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:13px;">30% Carried Interest to GP</div><div style="font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;color:var(--text-dim);">Jorge (18%) + Martha (12%) — performance fee only on profits</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTNERS PAGE -->
+<div class="page" id="page-partners">
+  <div class="page-header">
+    <div class="page-title">Partners</div>
+    <button class="add-btn" onclick="showPartnerModal()">+ Add Partner</button>
+  </div>
+
+  <!-- Fund Snapshot -->
+  <div class="lp-card" style="margin-bottom:16px;">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px;">
+      <div><div class="h-lbl">Fund Value</div><div class="h-val" style="font-size:20px;" id="pFundVal">$0</div></div>
+      <div><div class="h-lbl">Total Cost</div><div class="h-val" style="font-size:20px;" id="pCostBasis">$0</div></div>
+      <div><div class="h-lbl">Total Profit</div><div class="h-val pos" style="font-size:20px;" id="pTotalProfit">$0</div></div>
+    </div>
+  </div>
+
+  <!-- GP Cards -->
+  <div class="section-lbl">General Partners — 30% Split</div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;">
+    <!-- Jorge -->
+    <div class="lp-card" style="border-color:rgba(0,255,136,0.25);padding:18px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;" id="gpName">Jorge Medina</div>
+          <div class="h-lbl" style="margin:0;">CIO · 18% of fund profits</div>
+        </div>
+        <button onclick="showGPModal('jorge')" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:1px;padding:6px 12px;cursor:pointer;border-radius:2px;text-transform:uppercase;">EDIT</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">LP Return</div>
+          <div class="h-lbl" style="margin-bottom:4px;color:var(--text-dim)"><span id="gpAmtLabel">$5,000</span> invested</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gpLPReturn">$0</div>
+        </div>
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">GP Carry</div>
+          <div class="h-lbl" style="margin-bottom:4px;color:var(--text-dim)">18% of profits</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gpCarry">$0</div>
+        </div>
+        <div style="background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);border-radius:2px;padding:12px;">
+          <div class="h-lbl">Total Return</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gpProfit">$0</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--green);" id="gpPct">0%</div>
+        </div>
+      </div>
+    </div>
+    <!-- Martha -->
+    <div class="lp-card" style="border-color:rgba(0,255,136,0.25);padding:18px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;" id="gp2Name">Martha Lombart</div>
+          <div class="h-lbl" style="margin:0;">CMO · 12% of fund profits</div>
+        </div>
+        <button onclick="showGPModal('martha')" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:1px;padding:6px 12px;cursor:pointer;border-radius:2px;text-transform:uppercase;">EDIT</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">LP Return</div>
+          <div class="h-lbl" style="margin-bottom:4px;color:var(--text-dim)"><span id="gp2AmtLabel">$5,000</span> invested</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gp2LPReturn">$0</div>
+        </div>
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">GP Carry</div>
+          <div class="h-lbl" style="margin-bottom:4px;color:var(--text-dim)">12% of profits</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gp2Carry">$0</div>
+        </div>
+        <div style="background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.2);border-radius:2px;padding:12px;">
+          <div class="h-lbl">Total Return</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:var(--green);" id="gp2Profit">$0</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--green);" id="gp2Pct">0%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LP Partners List -->
+  <div class="section-lbl">Limited Partners</div>
+  <div id="partnersListEl"></div>
+
+  <!-- Empty state -->
+  <div id="noPartnersMsg" style="display:none; text-align:center; padding:48px; color:var(--text-dim); font-family:'Barlow',sans-serif; font-weight:600; font-size:14px; letter-spacing:2px; text-transform:uppercase; border:1px solid var(--border); border-radius:2px;">
+    No LPs added yet — tap + Add Partner
+  </div>
+</div>
+
+<!-- PARTNER MODAL -->
+<div class="modal-overlay" id="partnerModal">
+  <div class="modal">
+    <div class="modal-title" id="partnerModalTitle">Add Partner</div>
+    <div class="form-group">
+      <label class="form-lbl">Full Name</label>
+      <input type="text" class="form-input" id="pName" placeholder="e.g. Martha Lombart">
+    </div>
+    <div class="form-group">
+      <label class="form-lbl">Investment Amount ($)</label>
+      <input type="number" class="form-input" id="pAmount" placeholder="5000">
+    </div>
+    <input type="hidden" id="pEditId">
+    <div class="menu-error" id="partnerErr" style="display:none;margin-top:8px;"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="hidePartnerModal()">Cancel</button>
+      <button class="btn-primary" onclick="savePartner()">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<!-- GP EDIT MODAL -->
+<div class="modal-overlay" id="gpModal">
+  <div class="modal">
+    <div class="modal-title" id="gpModalTitle">Edit GP</div>
+    <input type="hidden" id="gpEditTarget">
+    <div class="form-group">
+      <label class="form-lbl">Name</label>
+      <input type="text" class="form-input" id="gpNameInput" placeholder="Full name">
+    </div>
+    <div class="form-group">
+      <label class="form-lbl">Investment Amount ($)</label>
+      <input type="number" class="form-input" id="gpAmountInput" placeholder="5000">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="hideGPModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveGP()">SAVE</button>
+    </div>
+  </div>
+</div>
+
+<!-- TRADE MODAL -->
+<div class="modal-overlay" id="tradeModal">
+  <div class="modal">
+    <div class="modal-title">Add Trade</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-lbl">Date</label><input type="date" class="form-input" id="tDate"></div>
+      <div class="form-group"><label class="form-lbl">Type</label><select class="form-select" id="tType"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></div>
+    </div>
+    <div class="form-group"><label class="form-lbl">Asset</label><select class="form-select" id="tAsset"><option value="BTC">Bitcoin (BTC)</option><option value="ETH">Ethereum (ETH)</option><option value="SOL">Solana (SOL)</option></select></div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-lbl">Quantity</label><input type="number" step="any" class="form-input" id="tQty" placeholder="0.00000"></div>
+      <div class="form-group"><label class="form-lbl">Price (USD)</label><input type="number" step="any" class="form-input" id="tPrice" placeholder="0.00"></div>
+    </div>
+    <div class="form-group"><label class="form-lbl">Notes</label><input type="text" class="form-input" id="tNotes" placeholder="Optional..."></div>
+    <div class="menu-error" id="tradeErr" style="display:none;margin-top:8px;"></div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="hideTradeModal()">Cancel</button><button class="btn-primary" onclick="saveTrade()">SAVE TRADE</button></div>
+  </div>
+</div>
+
+<!-- CAPITAL MODAL -->
+<div class="modal-overlay" id="capModal">
+  <div class="modal">
+    <div class="modal-title">Update Capital</div>
+    <div class="form-group"><label class="form-lbl">Capital Raised ($)</label><input type="number" class="form-input" id="capInput" placeholder="0"></div>
+    <div class="form-group"><label class="form-lbl">Number of Investors</label><input type="number" class="form-input" id="investInput" placeholder="0" min="0" max="20"></div>
+    <div class="modal-actions"><button class="btn-cancel" onclick="hideCapModal()">Cancel</button><button class="btn-primary" onclick="saveCapital()">SAVE</button></div>
+  </div>
+</div>
+
+<script>
+const CMC_KEY = 'e4b0ddbd-fbe2-47aa-902a-f3017f505241';
+
+let isAdmin = false;
+let prices = {BTC:0,ETH:0,SOL:0};
+let changes = {BTC:0,ETH:0,SOL:0};
+let trades = JSON.parse(localStorage.getItem('2030af_trades')||'[]');
+let capData = JSON.parse(localStorage.getItem('2030af_cap')||'{"raised":0,"investors":0}');
+let chartHistory = JSON.parse(localStorage.getItem('2030af_chart')||'[]');
+let chartRange = '1W';
+let cvs, ctx;
+
+window.addEventListener('load', () => {
+  // Start in LP view — admin must log in
+  document.getElementById('loginSection').style.display = 'flex';
+  document.getElementById('adminSection').style.display = 'none';
+  document.getElementById('adminBadge').style.display = 'none';
+  document.getElementById('tradesNavBtn').style.display = 'none';
+  document.getElementById('tradesMenuBtn').style.display = 'none';
+  document.getElementById('addTradeBtn').style.display = 'none';
+  buildTicker();
+  initChart();
+  renderTrades();
+  updateCapDisplay();
+  updateDays();
+  fetchPrices();
+  setInterval(fetchPrices, 60000);
+});
+
+// NAV
+function showPage(name, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn,.menu-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (name === 'overview') setTimeout(initChart, 50);
+  if (name === 'partners') updatePartnersPage();
+}
+
+// MENU
+function toggleMenu() {
+  const open = document.getElementById('sideMenu').classList.contains('open');
+  document.getElementById('sideMenu').classList.toggle('open',!open);
+  document.getElementById('menuOverlay').classList.toggle('show',!open);
+  document.getElementById('hamBtn').classList.toggle('open',!open);
+}
+function closeMenu() {
+  document.getElementById('sideMenu').classList.remove('open');
+  document.getElementById('menuOverlay').classList.remove('show');
+  document.getElementById('hamBtn').classList.remove('open');
+}
+// doLogin defined below via Firebase Auth
+function doLogout() {
+  isAdmin = false;
+  document.getElementById('menuEmail').value = '';
+  document.getElementById('menuPw').value = '';
+  document.getElementById('menuErr').style.display = 'none';
+  document.getElementById('loginSection').style.display = 'flex';
+  document.getElementById('adminSection').style.display = 'none';
+  document.getElementById('adminBadge').style.display = 'none';
+  document.getElementById('tradesNavBtn').style.display = 'none';
+  document.getElementById('tradesMenuBtn').style.display = 'none';
+  document.getElementById('addTradeBtn').style.display = 'none';
+  document.getElementById('partnersNavBtn').style.display = 'none';
+  document.getElementById('partnersMenuBtn').style.display = 'none';
+  document.querySelectorAll('.del-btn').forEach(b => b.style.display = 'none');
+  showPage('overview', null);
+  closeMenu();
+}
+
+// ── FIREBASE AUTH ──────────────────────────────────────────────────────────
+const FIREBASE_API_KEY = 'AIzaSyCzHZ5bWs7Wnf9Xv_1EHwVG6JC_YRuDRlc';
+
+function grantAdmin() {
+  isAdmin = true;
+  document.getElementById('loginSection').style.display = 'none';
+  document.getElementById('adminSection').style.display = 'flex';
+  document.getElementById('adminBadge').style.display = 'block';
+  document.getElementById('tradesNavBtn').style.display = '';
+  document.getElementById('tradesMenuBtn').style.display = '';
+  document.getElementById('addTradeBtn').style.display = '';
+  document.getElementById('partnersNavBtn').style.display = '';
+  document.getElementById('partnersMenuBtn').style.display = '';
+  document.querySelectorAll('.del-btn').forEach(b => b.style.display = 'inline-block');
+  renderTrades();
+  closeMenu();
+}
+
+async function doLogin() {
+  const email = document.getElementById('menuEmail').value.trim();
+  const pw    = document.getElementById('menuPw').value;
+  const btn   = document.getElementById('loginBtn');
+
+  if (!email || !pw) { showMenuErr('Please enter email and password.'); return; }
+
+  btn.textContent = 'SIGNING IN...';
+  btn.disabled = true;
+  document.getElementById('menuErr').style.display = 'none';
+
+  try {
+    const res = await fetch(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
+      { method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ email, password: pw, returnSecureToken: true }) }
+    );
+    const data = await res.json();
+    if (data.error) { showMenuErr(friendlyError(data.error.message)); return; }
+    grantAdmin();
+  } catch(e) {
+    showMenuErr('Connection error. Please try again.');
+  } finally {
+    btn.textContent = 'SIGN IN';
+    btn.disabled = false;
+  }
+}
+
+// PRICES
+
+function showMenuErr(msg) {
+  const el = document.getElementById('menuErr');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+function showTradeErr(msg) {
+  const el = document.getElementById('tradeErr');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function friendlyError(code) {
+  const map = {
+    'EMAIL_NOT_FOUND': 'No account found with that email.',
+    'INVALID_PASSWORD': 'Incorrect password.',
+    'INVALID_EMAIL': 'Please enter a valid email address.',
+    'USER_DISABLED': 'This account has been disabled.',
+    'TOO_MANY_ATTEMPTS_TRY_LATER': 'Too many attempts. Try again later.',
+    'INVALID_LOGIN_CREDENTIALS': 'Incorrect email or password.'
+  };
+  return map[code] || 'Login failed. Please try again.';
+}
+
+async function fetchPrices() {
+  let ok = false;
+
+  // Primary: CoinGecko — no key needed, works from local files
+  try {
+    const r = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24hr_change=true');
+    const d = await r.json();
+    if (d.bitcoin) {
+      prices.BTC = d.bitcoin.usd;
+      prices.ETH = d.ethereum.usd;
+      prices.SOL = d.solana.usd;
+      changes.BTC = d.bitcoin.usd_24h_change;
+      changes.ETH = d.ethereum.usd_24h_change;
+      changes.SOL = d.solana.usd_24h_change;
+      ok = true;
+    }
+  } catch(e) { console.log('CoinGecko failed:', e); }
+
+  // Fallback: CoinMarketCap via allorigins proxy
+  if (!ok) {
+    try {
+      const cmcUrl = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=BTC,ETH,SOL&convert=USD&CMC_PRO_API_KEY=' + CMC_KEY;
+      const r = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent(cmcUrl));
+      const wrapper = await r.json();
+      const d = JSON.parse(wrapper.contents);
+      if (d.data) {
+        prices.BTC = d.data.BTC.quote.USD.price;
+        prices.ETH = d.data.ETH.quote.USD.price;
+        prices.SOL = d.data.SOL.quote.USD.price;
+        changes.BTC = d.data.BTC.quote.USD.percent_change_24h;
+        changes.ETH = d.data.ETH.quote.USD.percent_change_24h;
+        changes.SOL = d.data.SOL.quote.USD.percent_change_24h;
+        ok = true;
+      }
+    } catch(e) { console.log('CMC fallback failed:', e); }
+  }
+
+  if (ok) {
+    document.getElementById('lastUpd').textContent = new Date().toLocaleTimeString();
+    updateCards();
+    updateHero();
+    updateTicker();
+    updatePartnersPage();
+    saveSnap();
+    drawChart();
+  }
+}
+
+function fmt(n,d=2){if(!n&&n!==0)return'$—';return'$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+function fmtP(n){return(n>=0?'+':'')+n.toFixed(2)+'%';}
+
+function holdings(){
+  const h={BTC:{q:0,c:0},ETH:{q:0,c:0},SOL:{q:0,c:0}};
+  trades.forEach(t=>{const m=t.type==='BUY'?1:-1;h[t.asset].q+=m*+t.qty;h[t.asset].c+=m*+t.qty*+t.price;});
+  return h;
+}
+
+function updateCards(){
+  const h=holdings();
+  ['BTC','ETH','SOL'].forEach(s=>{
+    const id=s.toLowerCase(),p=prices[s],c=changes[s],q=h[s].q,cost=h[s].c,val=q*p,pnl=val-cost,avg=q>0?cost/q:0;
+    document.getElementById(id+'Price').textContent=fmt(p);
+    const ce=document.getElementById(id+'Chg');ce.textContent=fmtP(c);ce.className='asset-chg '+(c>=0?'up':'dn');
+    document.getElementById(id+'Qty').textContent=q.toFixed(6)+' '+s;
+    document.getElementById(id+'Val').textContent=fmt(val);
+    document.getElementById(id+'Avg').textContent=avg>0?fmt(avg):'$—';
+    const pe=document.getElementById(id+'Pnl');pe.textContent=(pnl>=0?'+':'')+fmt(pnl);pe.className='h-val '+(pnl>=0?'pos':'neg2');
+  });
+  const h2=holdings(),bv=h2.BTC.q*prices.BTC,ev=h2.ETH.q*prices.ETH,sv=h2.SOL.q*prices.SOL,tot=bv+ev+sv||1;
+  document.getElementById('allocBtc').style.flex=bv||0.001;
+  document.getElementById('allocEth').style.flex=ev||0;
+  document.getElementById('allocSol').style.flex=sv||0;
+  document.getElementById('pctBtc').textContent=(bv/tot*100).toFixed(1)+'%';
+  document.getElementById('pctEth').textContent=(ev/tot*100).toFixed(1)+'%';
+  document.getElementById('pctSol').textContent=(sv/tot*100).toFixed(1)+'%';
+}
+
+function updateHero(){
+  const h=holdings();let tv=0,tc=0;
+  ['BTC','ETH','SOL'].forEach(s=>{tv+=h[s].q*prices[s];tc+=h[s].c;});
+  const pnl=tv-tc,pct=tc>0?pnl/tc*100:0;
+  document.getElementById('heroVal').textContent=fmt(tv,0);
+  document.getElementById('gainAmt').textContent=(pnl>=0?'+':'')+fmt(pnl);
+  document.getElementById('gainAmt').className='gain-amt'+(pnl<0?' neg':'');
+  document.getElementById('gainPct').textContent=fmtP(pct);
+  document.getElementById('gainPct').className='gain-badge'+(pct<0?' neg':'');
+  document.getElementById('stCost').textContent=fmt(tc);
+  const pnlEl=document.getElementById('stPnl');
+  pnlEl.textContent=(pnl>=0?'+':'')+fmt(pnl);
+  pnlEl.className='stat-val '+(pnl>=0?'pos':'neg2');
+
+  // Fund Breakdown
+  const fbSpot=document.getElementById('fbSpot');
+  if(fbSpot) fbSpot.textContent=fmt(tv,0);
+
+  // Realized gains: sum of SELL trades value minus cost
+  let realizedGains=0;
+  const buys={BTC:{q:0,c:0},ETH:{q:0,c:0},SOL:{q:0,c:0}};
+  trades.forEach(t=>{
+    if(t.type==='BUY'){buys[t.asset].q+=+t.qty;buys[t.asset].c+=+t.qty*+t.price;}
+    else if(t.type==='SELL'){
+      const avgCost=buys[t.asset].q>0?buys[t.asset].c/buys[t.asset].q:0;
+      realizedGains+=(+t.price-avgCost)*+t.qty;
+    }
+  });
+  const fbReal=document.getElementById('fbRealized');
+  if(fbReal){fbReal.textContent=(realizedGains>=0?'+':'')+fmt(realizedGains);fbReal.className='stat-val '+(realizedGains>=0?'pos':'neg2');}
+
+  // Cash = capital raised minus cost basis (undeployed capital)
+  const jorgeAmt=gpData?gpData.amount||5000:5000;
+  const marthaAmt=gpData?gpData.amount2||5000:5000;
+  const totalRaised=partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt;
+  const cash=Math.max(0,totalRaised-tc);
+  const fbCash=document.getElementById('fbCash');
+  if(fbCash){
+    if(totalRaised>0){fbCash.textContent=fmt(cash,0);fbCash.style.color='var(--text)';}
+    else{fbCash.textContent='—';fbCash.style.color='var(--text-dim)';}
+  }
+
+  // Risk Metrics — drawdown from chart history
+  const snaps=chartHistory.map(s=>s.v).filter(v=>v>0);
+  if(snaps.length>1){
+    let peak=snaps[0],maxDD=0;
+    snaps.forEach(v=>{if(v>peak)peak=v;const dd=(peak-v)/peak*100;if(dd>maxDD)maxDD=dd;});
+    const curPeak=Math.max(...snaps),curDD=curPeak>0?(curPeak-tv)/curPeak*100:0;
+    const rmMax=document.getElementById('rmMaxDD');const rmCur=document.getElementById('rmCurDD');
+    if(rmMax) rmMax.textContent=maxDD>0?'-'+maxDD.toFixed(1)+'%':'—';
+    if(rmCur) rmCur.textContent=curDD>0.01?'-'+curDD.toFixed(1)+'%':'—';
+  }
+
+  // Leverage utilization placeholder (no leverage yet)
+  const rmLev=document.getElementById('rmLevUtil');
+  if(rmLev) rmLev.textContent=tc>0?((tc/Math.max(totalRaised,1))*100).toFixed(1)+'%':'0%';
+
+  // NAV Per LP (standard $5K entry)
+  const lpProfit=pnl>0?pnl*0.70:0;
+  const totalInvested=(partners.reduce((s,p)=>s+p.amount,0)+jorgeAmt+marthaAmt)||1;
+  const lpShare=5000/totalInvested;
+  const lpProfit5k=lpProfit*lpShare;
+  const nav5k=5000+lpProfit5k;
+  const navPct=lpProfit5k/5000*100;
+  const navEl=document.getElementById('navPerLP');
+  const navPctEl=document.getElementById('navReturnPct');
+  const navAmtEl=document.getElementById('navReturnAmt');
+  const navShareEl=document.getElementById('navLPShare');
+  if(navEl) navEl.textContent=fmt(nav5k,0);
+  if(navPctEl) navPctEl.textContent=(navPct>=0?'+':'')+navPct.toFixed(2)+'%';
+  if(navAmtEl) navAmtEl.textContent=(lpProfit5k>=0?'+':'')+fmt(lpProfit5k,0);
+  if(navShareEl) navShareEl.textContent=(lpShare*100).toFixed(2)+'% of LP pool';
+}
+
+// TICKER
+function buildTicker(){
+  const items=[
+    {sym:'BTC'},{sym:'ETH'},{sym:'SOL'},
+    {lbl:'FUND VALUE',id:'tk-fund'},
+    {lbl:'· 2030 CYCLE ·',dim:true}
+  ];
+  let html='';
+  [0,1].forEach(()=>{
+    items.forEach(it=>{
+      if(it.dim) html+=`<div class="ticker-item" style="color:rgba(255,255,255,0.18)">${it.lbl}</div>`;
+      else if(it.id) html+=`<div class="ticker-item"><span class="sym">${it.lbl}</span><span class="pr" id="${it.id}">—</span></div>`;
+      else html+=`<div class="ticker-item"><span class="sym">${it.sym}</span><span class="pr" id="tk-${it.sym.toLowerCase()}">—</span><span id="tk-${it.sym.toLowerCase()}-c" class="t-up">—</span></div>`;
+    });
+  });
+  document.getElementById('tickerTrack').innerHTML=html;
+}
+
+function updateTicker(){
+  ['BTC','ETH','SOL'].forEach(s=>{
+    const id='tk-'+s.toLowerCase();
+    [id,id+'2'].forEach(eid=>{
+      const pe=document.getElementById(eid),ce=document.getElementById(eid+'-c');
+      if(pe)pe.textContent=fmt(prices[s]);
+      if(ce){ce.textContent=fmtP(changes[s]);ce.className=changes[s]>=0?'t-up':'t-dn';}
+    });
+  });
+  const h=holdings();let tv=0;['BTC','ETH','SOL'].forEach(s=>tv+=h[s].q*prices[s]);
+  ['tk-fund','tk-fund2'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fmt(tv,0);});
+}
+
+// CHART
+function saveSnap(){
+  const h=holdings();let tv=0;['BTC','ETH','SOL'].forEach(s=>tv+=h[s].q*prices[s]);
+  chartHistory.push({t:Date.now(),v:tv});
+  chartHistory=chartHistory.filter(s=>s.t>Date.now()-365*86400000);
+  localStorage.setItem('2030af_chart',JSON.stringify(chartHistory));
+}
+function initChart(){
+  cvs=document.getElementById('fundChart');if(!cvs)return;
+  ctx=cvs.getContext('2d');resize();drawChart();
+}
+function resize(){
+  if(!cvs)return;const dpr=window.devicePixelRatio||1,w=cvs.offsetWidth,h=cvs.offsetHeight;
+  cvs.width=w*dpr;cvs.height=h*dpr;ctx.scale(dpr,dpr);
+}
+function setRange(r,btn){
+  chartRange=r;
+  document.querySelectorAll('.time-tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  drawChart();
+}
+function chartData(){
+  const now=Date.now();
+  const days={'1W':7,'1M':30,'3M':90,'ALL':9999}[chartRange]||7;
+  return chartHistory.filter(s=>s.t>=now-days*86400000);
+}
+function drawChart(){
+  if(!cvs||!ctx)return;
+  const W=cvs.offsetWidth,H=cvs.offsetHeight;ctx.clearRect(0,0,W,H);
+  const d=chartData();
+  if(d.length<2){
+    ctx.fillStyle='rgba(255,255,255,0.55)';
+    ctx.font='bold 14px Barlow Condensed,sans-serif';
+    ctx.textAlign='center';
+    ctx.fillText('CHART WILL BUILD AS FUND GROWS',W/2,H/2-8);
+    ctx.font='11px Space Mono,monospace';
+    ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.fillText('Add trades to start tracking',W/2,H/2+18);
+    return;
+  }
+  const vals=d.map(x=>x.v),minV=Math.min(...vals)*.97,maxV=Math.max(...vals)*1.02,vR=maxV-minV||1;
+  const p={t:10,r:16,b:28,l:62},cw=W-p.l-p.r,ch=H-p.t-p.b;
+  const tx=i=>p.l+(i/(d.length-1))*cw,ty=v=>p.t+(1-(v-minV)/vR)*ch;
+  // grid
+  for(let i=0;i<=4;i++){
+    const y=p.t+(i/4)*ch;
+    ctx.strokeStyle='rgba(0,255,136,0.05)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(p.l,y);ctx.lineTo(p.l+cw,y);ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,0.22)';ctx.font='10px Space Mono,monospace';ctx.textAlign='right';
+    ctx.fillText(fmt(maxV-(i/4)*vR,0),p.l-6,y+4);
+  }
+  // fill
+  const gr=ctx.createLinearGradient(0,p.t,0,p.t+ch);gr.addColorStop(0,'rgba(0,255,136,0.18)');gr.addColorStop(1,'rgba(0,255,136,0)');
+  ctx.beginPath();d.forEach((x,i)=>i===0?ctx.moveTo(tx(i),ty(x.v)):ctx.lineTo(tx(i),ty(x.v)));
+  ctx.lineTo(tx(d.length-1),p.t+ch);ctx.lineTo(tx(0),p.t+ch);ctx.closePath();ctx.fillStyle=gr;ctx.fill();
+  // line
+  ctx.beginPath();ctx.strokeStyle='#00ff88';ctx.lineWidth=2;ctx.lineJoin='round';
+  d.forEach((x,i)=>i===0?ctx.moveTo(tx(i),ty(x.v)):ctx.lineTo(tx(i),ty(x.v)));ctx.stroke();
+  // dot
+  const lx=tx(d.length-1),ly=ty(d[d.length-1].v);
+  ctx.beginPath();ctx.arc(lx,ly,4,0,Math.PI*2);ctx.fillStyle='#00ff88';ctx.fill();
+  ctx.beginPath();ctx.arc(lx,ly,8,0,Math.PI*2);ctx.strokeStyle='rgba(0,255,136,0.22)';ctx.lineWidth=2;ctx.stroke();
+  // x labels
+  const n=Math.min(5,d.length);ctx.fillStyle='rgba(255,255,255,0.22)';ctx.font='10px Space Mono,monospace';ctx.textAlign='center';
+  for(let i=0;i<n;i++){const idx=Math.floor(i/(n-1)*(d.length-1)),dt=new Date(d[idx].t);ctx.fillText((dt.getMonth()+1)+'/'+dt.getDate(),tx(idx),p.t+ch+18);}
+}
+window.addEventListener('resize',()=>{resize();drawChart();});
+
+// CAPITAL
+function updateCapDisplay() {
+  // Auto-calculate from partners list + GP investments
+  const jorgeAmt = gpData.amount || 5000;
+  const marthaAmt = gpData.amount2 || 5000;
+  const lpTotal = partners.reduce((s, p) => s + p.amount, 0);
+  const raised = lpTotal + jorgeAmt + marthaAmt;
+  const investorCount = partners.length + 2; // +2 for both GPs
+  const pct = Math.min(raised / 100000 * 100, 100);
+
+  // LP Summary card
+  const capVal = document.getElementById('capVal');
+  if (capVal) capVal.textContent = fmt(raised, 0);
+  const progFill = document.getElementById('progFill');
+  if (progFill) progFill.style.width = pct + '%';
+  const investCt = document.getElementById('investCt');
+  if (investCt) investCt.textContent = investorCount;
+  const capPct = document.getElementById('capPct');
+  if (capPct) capPct.textContent = pct.toFixed(1) + '% funded';
+}
+// Capital is auto-calculated from partners page
+
+// TRADES
+function showTradeModal(){document.getElementById('tDate').value=new Date().toISOString().split('T')[0];document.getElementById('tradeErr').style.display='none';document.getElementById('tradeModal').classList.add('show');}
+function hideTradeModal(){document.getElementById('tradeModal').classList.remove('show');['tDate','tQty','tPrice','tNotes'].forEach(id=>document.getElementById(id).value='');}
+function saveTrade(){
+  const date=document.getElementById('tDate').value,qty=+document.getElementById('tQty').value,price=+document.getElementById('tPrice').value;
+  if(!date||!qty||!price){showTradeErr('Please fill in date, quantity and price.');return;}
+  trades.push({id:Date.now(),date,type:document.getElementById('tType').value,asset:document.getElementById('tAsset').value,qty,price,notes:document.getElementById('tNotes').value});
+  localStorage.setItem('2030af_trades',JSON.stringify(trades));
+  hideTradeModal();renderTrades();updateCards();updateHero();
+}
+function deleteTrade(id){
+  trades=trades.filter(t=>t.id!==id);
+  localStorage.setItem('2030af_trades',JSON.stringify(trades));
+  renderTrades();updateCards();updateHero();
+}
+function renderTrades(){
+  const body=document.getElementById('tradesBody');
+  if(!trades.length){body.innerHTML=`<tr><td colspan="8"><div class="empty-trades">NO TRADES LOGGED YET</div></td></tr>`;return;}
+  const sorted=[...trades].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  body.innerHTML=sorted.map(t=>{
+    const sc={BTC:'btc-s',ETH:'eth-s',SOL:'sol-s'}[t.asset];
+    const tc=t.type==='BUY'?'buy-b':'sell-b';
+    const total=+t.qty*+t.price;
+    const del=`<button class="del-btn" style="display:${isAdmin?'inline-block':'none'}" onclick="deleteTrade(${t.id})">✕</button>`;
+    return`<tr><td>${t.date}</td><td><span class="asset-sym ${sc}">${t.asset}</span></td><td><span class="trade-badge ${tc}">${t.type}</span></td><td>${(+t.qty).toFixed(6)}</td><td>${fmt(+t.price)}</td><td>${fmt(total)}</td><td style="color:var(--text-dim);font-size:13px">${t.notes||'—'}</td><td>${del}</td></tr>`;
+  }).join('');
+}
+function updateDays(){document.getElementById('stDays').textContent=Math.ceil((new Date('2030-01-01')-new Date())/86400000).toLocaleString();}
+// ===== PARTNERS =====
+let partners = JSON.parse(localStorage.getItem('2030af_partners') || '[]');
+let gpData = JSON.parse(localStorage.getItem('2030af_gp') || '{"name":"Jorge Medina","amount":5000,"name2":"Martha Lombart","amount2":5000}');
+
+function updatePartnersPage() {
+  const h = holdings();
+  let fundVal = 0, costBasis = 0;
+  ['BTC','ETH','SOL'].forEach(s => { fundVal += h[s].q * prices[s]; costBasis += h[s].c; });
+  const totalProfit = fundVal - costBasis;
+  const lpProfit = totalProfit > 0 ? totalProfit * 0.70 : 0;
+  const totalInvested = (partners.reduce((sum, p) => sum + p.amount, 0) + 10000) || 1; // +10K for both GPs
+
+  // Fund snapshot
+  document.getElementById('pFundVal').textContent = fmt(fundVal, 0);
+  document.getElementById('pCostBasis').textContent = fmt(costBasis, 0);
+  const profitEl = document.getElementById('pTotalProfit');
+  profitEl.textContent = (totalProfit >= 0 ? '+' : '') + fmt(totalProfit, 0);
+  profitEl.className = 'h-val ' + (totalProfit >= 0 ? 'pos' : 'neg2');
+
+  // GP carry (30% of profits split 60/40)
+  const jorgeCarry = totalProfit > 0 ? totalProfit * 0.18 : 0;
+  const marthaCarry = totalProfit > 0 ? totalProfit * 0.12 : 0;
+
+  // GP LP return — based on their individual investment amounts
+  const jorgeAmt = gpData.amount || 5000;
+  const marthaAmt = gpData.amount2 || 5000;
+  const totalInvestedWithGP = partners.reduce((s, p) => s + p.amount, 0) + jorgeAmt + marthaAmt;
+  const lpPool = totalProfit > 0 ? totalProfit * 0.70 : 0;
+  const jorgeLP = totalInvestedWithGP > 0 ? lpPool * (jorgeAmt / totalInvestedWithGP) : 0;
+  const marthaLP = totalInvestedWithGP > 0 ? lpPool * (marthaAmt / totalInvestedWithGP) : 0;
+
+  const jorgeTotal = jorgeCarry + jorgeLP;
+  const marthaTotal = marthaCarry + marthaLP;
+  const jorgePct = jorgeAmt > 0 ? (jorgeTotal / jorgeAmt) * 100 : 0;
+  const marthaPct = marthaAmt > 0 ? (marthaTotal / marthaAmt) * 100 : 0;
+
+  document.getElementById('gpName').textContent = gpData.name;
+  document.getElementById('gpAmtLabel').textContent = '$' + (jorgeAmt).toLocaleString();
+  document.getElementById('gpCarry').textContent = '+' + fmt(jorgeCarry, 0);
+  document.getElementById('gpLPReturn').textContent = '+' + fmt(jorgeLP, 0);
+  document.getElementById('gpProfit').textContent = '+' + fmt(jorgeTotal, 0);
+  document.getElementById('gpPct').textContent = (jorgePct >= 0 ? '+' : '') + jorgePct.toFixed(1) + '%';
+
+  document.getElementById('gp2Name').textContent = gpData.name2;
+  document.getElementById('gp2AmtLabel').textContent = '$' + (marthaAmt).toLocaleString();
+  document.getElementById('gp2Carry').textContent = '+' + fmt(marthaCarry, 0);
+  document.getElementById('gp2LPReturn').textContent = '+' + fmt(marthaLP, 0);
+  document.getElementById('gp2Profit').textContent = '+' + fmt(marthaTotal, 0);
+  document.getElementById('gp2Pct').textContent = (marthaPct >= 0 ? '+' : '') + marthaPct.toFixed(1) + '%';
+
+  // LP list
+  const container = document.getElementById('partnersListEl');
+  const noMsg = document.getElementById('noPartnersMsg');
+
+  if (!partners.length) {
+    container.innerHTML = '';
+    noMsg.style.display = 'block';
+    return;
+  }
+  noMsg.style.display = 'none';
+
+  container.innerHTML = partners.map((p, i) => {
+    const share = p.amount / totalInvested;
+    const myProfit = lpProfit * share;
+    const myTotal = p.amount + myProfit;
+    const myPct = p.amount > 0 ? (myProfit / p.amount) * 100 : 0;
+    const multiple = p.amount > 0 ? myTotal / p.amount : 1;
+
+    return `
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:2px;padding:20px;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;">${p.name}</div>
+            <div class="h-lbl" style="margin:0;">Limited Partner · $${p.amount.toLocaleString()} invested</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <button onclick="editPartner(${i})" style="background:transparent;border:1px solid var(--border);color:var(--text-dim);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:2px;padding:5px 10px;cursor:pointer;border-radius:2px;text-transform:uppercase;">EDIT</button>
+          <button onclick="deletePartner(${i})" style="background:transparent;border:1px solid rgba(255,51,85,0.3);color:var(--red);font-family:'Barlow',sans-serif;font-weight:600;font-size:11px;letter-spacing:2px;padding:5px 10px;cursor:pointer;border-radius:2px;text-transform:uppercase;">DEL</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;">
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">Invested</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;">${fmt(p.amount, 0)}</div>
+        </div>
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">Profit Share</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);">+${fmt(myProfit, 0)}</div>
+        </div>
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">% Gain</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:var(--green);">${myPct >= 0 ? '+' : ''}${myPct.toFixed(1)}%</div>
+        </div>
+        <div style="background:var(--surface3);border-radius:2px;padding:12px;">
+          <div class="h-lbl">Multiple</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;">${multiple.toFixed(2)}x</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showPartnerModal(isEdit = false) {
+  document.getElementById('partnerModalTitle').textContent = isEdit ? 'Edit Partner' : 'Add Partner';
+  if (!isEdit) { document.getElementById('pName').value = ''; document.getElementById('pAmount').value = ''; document.getElementById('pEditId').value = ''; }
+  document.getElementById('partnerModal').classList.add('show');
+}
+function hidePartnerModal() { document.getElementById('partnerModal').classList.remove('show'); }
+
+function savePartner() {
+  const name = document.getElementById('pName').value.trim();
+  const amount = parseFloat(document.getElementById('pAmount').value);
+  const errEl = document.getElementById('partnerErr');
+  if (!name || !amount || isNaN(amount)) { errEl.style.display='block'; errEl.textContent='Please enter a name and amount.'; return; }
+  errEl.style.display = 'none';
+  const editId = document.getElementById('pEditId').value;
+  if (editId !== '') {
+    partners[parseInt(editId)] = { name, amount };
+  } else {
+    partners.push({ name, amount });
+  }
+  localStorage.setItem('2030af_partners', JSON.stringify(partners));
+  hidePartnerModal();
+  updatePartnersPage();
+  updateCapDisplay();
+}
+
+function editPartner(i) {
+  document.getElementById('pName').value = partners[i].name;
+  document.getElementById('pAmount').value = partners[i].amount;
+  document.getElementById('pEditId').value = i;
+  showPartnerModal(true);
+}
+
+let pendingDeleteIndex = -1;
+
+function deletePartner(i) {
+  pendingDeleteIndex = i;
+  document.getElementById('deleteModalName').textContent = `This will remove ${partners[i].name} ($${partners[i].amount.toLocaleString()}) from the fund.`;
+  document.getElementById('deleteModal').classList.add('show');
+}
+
+function hideDeleteModal() {
+  document.getElementById('deleteModal').classList.remove('show');
+  pendingDeleteIndex = -1;
+}
+
+function confirmDelete() {
+  if (pendingDeleteIndex < 0) return;
+  partners.splice(pendingDeleteIndex, 1);
+  localStorage.setItem('2030af_partners', JSON.stringify(partners));
+  hideDeleteModal();
+  updatePartnersPage();
+  updateCapDisplay();
+}
+
+function showGPModal(target) {
+  document.getElementById('gpEditTarget').value = target;
+  document.getElementById('gpModalTitle').textContent = target === 'jorge' ? 'Edit Jorge' : 'Edit Martha';
+  document.getElementById('gpNameInput').value = target === 'jorge' ? gpData.name : gpData.name2;
+  document.getElementById('gpAmountInput').value = target === 'jorge' ? (gpData.amount || 5000) : (gpData.amount2 || 5000);
+  document.getElementById('gpModal').classList.add('show');
+}
+function hideGPModal() { document.getElementById('gpModal').classList.remove('show'); }
+function saveGP() {
+  const val = document.getElementById('gpNameInput').value.trim();
+  const amt = parseFloat(document.getElementById('gpAmountInput').value) || 5000;
+  if (!val) return;
+  const target = document.getElementById('gpEditTarget').value;
+  if (target === 'jorge') { gpData.name = val; gpData.amount = amt; }
+  else { gpData.name2 = val; gpData.amount2 = amt; }
+  localStorage.setItem('2030af_gp', JSON.stringify(gpData));
+  hideGPModal();
+  updatePartnersPage();
+  updateCapDisplay();
+}
+</script>
+<!-- DELETE CONFIRMATION MODAL -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:320px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">⚠️</div>
+    <div class="modal-title" style="font-size:22px;">Remove Partner?</div>
+    <div style="font-family:'Barlow',sans-serif;font-weight:600;font-size:15px;color:var(--text-dim);margin-bottom:24px;" id="deleteModalName"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <button class="btn-cancel" onclick="hideDeleteModal()" style="padding:14px;">CANCEL</button>
+      <button id="deleteConfirmBtn" onclick="confirmDelete()" style="background:var(--red);color:#fff;border:none;padding:14px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:2px;cursor:pointer;border-radius:2px;text-transform:uppercase;">REMOVE</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
