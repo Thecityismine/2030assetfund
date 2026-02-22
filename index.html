@@ -1605,11 +1605,19 @@ async function initBtcChart(){
       hide_top_toolbar: false,
       allow_symbol_change: false,
       container_id: "tv_chart",
+      overrides: {
+        "paneProperties.backgroundType": "solid",
+        "paneProperties.background": "#000000",
+        "paneProperties.vertGridProperties.color": "#141414",
+        "paneProperties.horzGridProperties.color": "#141414",
+        "scalesProperties.backgroundColor": "#000000",
+        "scalesProperties.textColor": "#a8a8a8"
+      },
       studies: ["MASimple@tv-basicstudies"],
       studies_overrides: {
         "moving average.length": 200,
-        "moving average.color": "#F7931A",
-        "moving average.linewidth": 2
+        "moving average.color": "#FF8C00",
+        "moving average.linewidth": 3
       }
     });
     tvWidgetLoaded = true;
