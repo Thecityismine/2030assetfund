@@ -181,6 +181,9 @@
   .time-tab { background:transparent; border:none; color:var(--text-dim); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:1px; padding:5px 11px; cursor:pointer; border-radius:2px; transition:all .2s; text-transform:uppercase; }
   .time-tab.active { color:var(--green); background:var(--green-glow); }
   #fundChart { width:100%; height:200px; display:block; }
+  .tv-wrap { background:var(--surface2); border:1px solid var(--border); border-radius:2px; padding:16px; }
+  #tv_chart { width:100%; height:70vh; min-height:420px; background:#000; border:1px solid var(--border2); border-radius:2px; overflow:hidden; }
+  .tv-help { font-family:'Barlow',sans-serif; font-weight:500; font-size:12px; color:var(--text-dim); margin-top:8px; }
 
   /* STATS */
   .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
@@ -386,6 +389,7 @@
       overflow-y:auto;
     }
     .form-row { grid-template-columns:1fr; }
+    #tv_chart { height:62vh; min-height:360px; }
     .modal-actions {
       flex-direction:column-reverse;
     }
@@ -403,6 +407,7 @@
   <div class="header-logo">2030 ASSET FUND</div>
   <div class="header-center">
     <button class="nav-btn active" onclick="showPage('overview',this)">Overview</button>
+    <button class="nav-btn" onclick="showPage('btc',this)">BTC Chart</button>
     <button class="nav-btn" id="tradesNavBtn" style="display:none" onclick="showPage('trades',this)">Trade Log</button>
     <button class="nav-btn" onclick="showPage('lp',this)">LP Summary</button>
     <button class="nav-btn" id="partnersNavBtn" style="display:none" onclick="showPage('partners',this)">Partners</button>
@@ -421,6 +426,7 @@
     <div class="menu-section-lbl">Navigate</div>
     <div class="menu-nav">
       <button class="menu-nav-btn active" onclick="showPage('overview',null);closeMenu()">Overview</button>
+      <button class="menu-nav-btn" onclick="showPage('btc',null);closeMenu()">BTC Chart</button>
       <button class="menu-nav-btn" onclick="showPage('lp',null);closeMenu()">LP Summary</button>
       <button class="menu-nav-btn" id="partnersMenuBtn" style="display:none" onclick="showPage('partners',null);closeMenu()">Partners</button>
       <button class="menu-nav-btn" id="tradesMenuBtn" style="display:none" onclick="showPage('trades',null);closeMenu()">Trade Log</button>
@@ -551,6 +557,20 @@
       <div class="legend-item"><div class="legend-dot" style="background:#627eea"></div><div><div class="legend-name">Ethereum</div><div class="legend-pct" id="pctEth">—%</div></div></div>
       <div class="legend-item"><div class="legend-dot" style="background:#9945ff"></div><div><div class="legend-name">Solana</div><div class="legend-pct" id="pctSol">—%</div></div></div>
     </div>
+  </div>
+</div>
+
+<!-- BTC CHART PAGE -->
+<div class="page" id="page-btc">
+  <div class="page-header">
+    <div class="page-title">Bitcoin Chart</div>
+  </div>
+  <div class="tv-wrap">
+    <div class="chart-top" style="margin-bottom:10px;">
+      <div class="chart-lbl">BTCUSD Weekly + 200 MA</div>
+    </div>
+    <div id="tv_chart"></div>
+    <div class="tv-help">Weekly chart with 200-period moving average.</div>
   </div>
 </div>
 
@@ -853,6 +873,8 @@ const CHART_START_TS = Date.parse('2026-01-01T00:00:00Z');
 let tickerRafId = null;
 let tickerLastTs = 0;
 let tickerOffsetPx = 0;
+let tvScriptPromise = null;
+let tvWidgetLoaded = false;
 
 function safeParseJSON(raw, fallback) {
   if (!raw) return fallback;
@@ -1073,6 +1095,7 @@ function showPage(name, btn) {
   document.getElementById('page-'+name).classList.add('active');
   if (btn) btn.classList.add('active');
   if (name === 'overview') setTimeout(initChart, 50);
+  if (name === 'btc') setTimeout(() => { void initBtcChart(); }, 0);
   if (name === 'partners') updatePartnersPage();
 }
 
@@ -1545,6 +1568,54 @@ function updateTicker(){
   });
   const tv=portfolioSummary().totalValue;
   ['tk-fund','tk-fund2'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=fmt(tv,0);});
+}
+
+// BTC CHART (TradingView)
+function ensureTradingViewScript(){
+  if(window.TradingView) return Promise.resolve();
+  if(tvScriptPromise) return tvScriptPromise;
+  tvScriptPromise = new Promise((resolve,reject)=>{
+    const s=document.createElement('script');
+    s.src='https://s3.tradingview.com/tv.js';
+    s.async=true;
+    s.onload=()=>resolve();
+    s.onerror=()=>reject(new Error('TradingView script failed to load'));
+    document.head.appendChild(s);
+  });
+  return tvScriptPromise;
+}
+
+async function initBtcChart(){
+  const host=document.getElementById('tv_chart');
+  if(!host||tvWidgetLoaded) return;
+  host.innerHTML='';
+  try{
+    await ensureTradingViewScript();
+    if(!window.TradingView||!document.getElementById('tv_chart')) return;
+    new window.TradingView.widget({
+      autosize: true,
+      symbol: "COINBASE:BTCUSD",
+      interval: "W",
+      timezone: "America/New_York",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#000000",
+      enable_publishing: false,
+      hide_top_toolbar: false,
+      allow_symbol_change: false,
+      container_id: "tv_chart",
+      studies: ["MASimple@tv-basicstudies"],
+      studies_overrides: {
+        "moving average.length": 200,
+        "moving average.color": "#F7931A",
+        "moving average.linewidth": 2
+      }
+    });
+    tvWidgetLoaded = true;
+  } catch(_){
+    host.innerHTML="<div style=\"display:flex;align-items:center;justify-content:center;height:100%;font-family:'Barlow',sans-serif;color:var(--text-dim);\">Unable to load TradingView chart.</div>";
+  }
 }
 // CHART
 function saveSnap(){
