@@ -1125,7 +1125,6 @@ async function doLogout() {
 }
 
 // FIREBASE AUTH
-const FIREBASE_API_KEY = 'AIzaSyCzHZ5bWs7Wnf9Xv_1EHwVG6JC_YRuDRlc';
 
 function grantAdmin() {
   setAdminUI(true);
@@ -1144,17 +1143,11 @@ async function doLogin() {
   document.getElementById('menuErr').style.display = 'none';
 
   try {
-    if (window.afAuth?.login) {
-      await window.afAuth.login(email, pw);
-    } else {
-      const res = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,
-        { method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ email, password: pw, returnSecureToken: true }) }
-      );
-      const data = await res.json();
-      if (data.error) { showMenuErr(friendlyError(data.error.message)); return; }
+    if (!window.afAuth?.login) {
+      showMenuErr('Auth service unavailable. Refresh and try again.');
+      return;
     }
+    await window.afAuth.login(email, pw);
     grantAdmin();
     void persistCloudStateNow();
   } catch(e) {
